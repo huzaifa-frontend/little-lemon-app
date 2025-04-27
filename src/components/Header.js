@@ -1,13 +1,14 @@
-import logoUrl from '../assets/logo.png';
+import logoUrl from '../assets/1.png';
 
 function Header() {
   return (
     <header>
-      <img
-        src={logoUrl}
-        alt="Little Lemon Logo"
-        style={{ width: '150px', height: 'auto' }}
-      />
+      <a href="/">
+        <img
+          src={logoUrl}
+          alt="Little Lemon Logo"
+        />
+      </a>
     </header>
   );
 }
