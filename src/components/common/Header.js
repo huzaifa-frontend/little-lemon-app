@@ -1,14 +1,15 @@
-import logoUrl from '../assets/1.png';
+import { Link } from 'react-router-dom';
+import logoUrl from '../../assets/1.png';
 
 function Header() {
   return (
     <header>
-      <a href="/">
+      <Link to="/">
         <img
           src={logoUrl}
           alt="Little Lemon Logo"
         />
-      </a>
+      </Link>
     </header>
   );
 }

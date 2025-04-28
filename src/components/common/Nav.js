@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import '../App.css';
+import { Link } from 'react-router-dom';
+import '../../App.css';
 
 function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,35 +24,35 @@ function Nav() {
       <div className={`nav-container ${menuOpen ? 'active' : ''}`}>
         <ul className="nav-links">
           <li>
-            <a href="#home" onClick={handleLinkClick}>
+            <Link to="/" onClick={handleLinkClick}>
               <i className="fas fa-home"></i> Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#menu" onClick={handleLinkClick}>
+            <Link to="/menu" onClick={handleLinkClick}>
               <i className="fas fa-utensils"></i> Menu
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#about" onClick={handleLinkClick}>
+            <Link to="/about" onClick={handleLinkClick}>
               <i className="fas fa-info-circle"></i> About
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#contact" onClick={handleLinkClick}>
+            <Link to="/contact" onClick={handleLinkClick}>
               <i className="fas fa-envelope"></i> Contact
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
 
       <div className="nav-icons">
-        <a href="/cart" className="cart-icon" onClick={handleLinkClick}>
+        <Link to="/cart" className="cart-icon" onClick={handleLinkClick}>
           <i className="fas fa-shopping-bag"></i>
-        </a>
-        <a href="/profile" className="profile-icon" onClick={handleLinkClick}>
+        </Link>
+        <Link to="/profile" className="profile-icon" onClick={handleLinkClick}>
           <i className="fas fa-user"></i>
-        </a>
+        </Link>
       </div>
     </nav>
   );
