@@ -6,7 +6,7 @@ function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLinkClick = () => {
-    setTimeout(() => setMenuOpen(false), 600);
+    setTimeout(() => setMenuOpen(false), 450);
   };
 
   return (

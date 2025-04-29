@@ -1,21 +1,25 @@
+/* === Global Reset and Base Styles === */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   background-color: #f9f9f9;
   color: #333;
 }
 
+/* === Header Section === */
 header {
   background-color: #f4ce14;
   padding: 10px;
@@ -27,6 +31,7 @@ header img {
   height: auto;
 }
 
+/* === Navigation Bar Section === */
 nav {
   display: flex;
   align-items: center;
@@ -36,6 +41,7 @@ nav {
   position: relative;
 }
 
+/* === Menu Toggle Button for Mobile === */
 .menu-toggle {
   background: none;
   border: none;
@@ -60,21 +66,21 @@ nav {
 .menu-toggle.active div:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
-
 .menu-toggle.active div:nth-child(2) {
   opacity: 0;
 }
-
 .menu-toggle.active div:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
+/* === Navigation Items Container === */
 .nav-container {
   display: flex;
   align-items: center;
   gap: 60px;
 }
 
+/* === Navigation Links === */
 .nav-links {
   list-style: none;
   display: flex;
@@ -111,6 +117,7 @@ nav {
   width: 100%;
 }
 
+/* === Navigation Icons === */
 .nav-icons {
   display: flex;
   align-items: center;
@@ -128,12 +135,14 @@ nav {
   color: #f4ce14;
 }
 
+/* === Main Content Area === */
 main {
   flex: 1;
-  padding: 40px 20px;
+  padding: 0px 20px;
   text-align: center;
 }
 
+/* === Footer Section === */
 footer {
   background-color: #495e57;
   color: white;
@@ -142,7 +151,160 @@ footer {
   font-size: 14px;
 }
 
+/* === Specials Section === */
+.specials {
+  padding: 2rem;
+  text-align: center;
+}
+
+.specials h2 {
+  font-size: 2.2rem;
+}
+
+.specials-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.special-card {
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  width: 280px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.special-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.special-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.special-card h3 {
+  margin: 0.5rem 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.special-card p {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* === Call To Action Section === */
+.call-to-action {
+  background-color: #f4ce14;
+  border-radius: 16px;
+  color: #000;
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.cta-content {
+  max-width: 600px;
+}
+
+.cta-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+
+.cta-content p {
+  font-size: 1.125rem;
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+  padding-bottom: 0.5rem;
+}
+
+.cta-button {
+  background-color: #fff;
+  color: #000000;
+  padding: 0.75rem 1.5rem;
+  border-radius: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+  border: 2px solid #000000;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #495e57;
+  color: #f4ce14;
+  border-color: #495e57;
+}
+/* === Customers Say Section === */
+.testimonials {
+  text-align: center;
+  padding: 3rem 2rem;
+  background-color: #f9f9f9;
+}
+
+.testimonials h2 {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.testimonial-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  max-width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.testimonial-img {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.testimonial-feedback {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 0.75rem;
+}
+
+.testimonial-name {
+  font-weight: bold;
+  color: #222;
+}
+
+/* === Responsive Styles === */
 @media (max-width: 700px) {
+  /* Responsive Navigation */
   .menu-toggle {
     display: block;
   }
@@ -190,5 +352,60 @@ footer {
     padding: 0;
     overflow-x: hidden;
   }
-}
 
+  /* Responsive Specials Section */
+  .specials {
+    padding: 1rem;
+  }
+
+  .specials h2{
+    font-size: 1.6rem;
+  }
+
+  /* Responsive Call To Action Section */
+  .call-to-action {
+    flex-direction: column;
+    padding: 3rem 1rem;
+  }
+
+  .cta-content h2 {
+    font-size: 2rem;
+  }
+
+  .cta-content p {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    font-size: 0.95rem;
+    padding: 0.65rem 1.25rem;
+  }
+
+  /* Responsive Customers Say Section */
+  .testimonials {
+    padding: 1.5rem 1rem;
+    text-align: center;
+  }
+
+  .testimonials h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .testimonial {
+    margin: 1rem auto;
+    padding: 1rem;
+    max-width: 90%;
+    font-size: 0.95rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-align: center;
+  }
+
+  .testimonial p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+}
