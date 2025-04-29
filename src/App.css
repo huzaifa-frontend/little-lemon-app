@@ -158,7 +158,25 @@ footer {
 }
 
 .specials h2 {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.specials h2::after {
+  content: '';
+  width: 50%;
+  height: 4px;
+  background-color: #f4ce14;
+  position: absolute;
+  left: 25%;
+  bottom: 0;
+  border-radius: 2px;
 }
 
 .specials-grid {
@@ -213,6 +231,7 @@ footer {
   align-items: center;
   text-align: center;
   margin-top: 3rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .cta-content {
@@ -222,7 +241,8 @@ footer {
 .cta-content h2 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
-  font-weight: 400;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 .cta-content p {
@@ -249,6 +269,7 @@ footer {
   color: #f4ce14;
   border-color: #495e57;
 }
+
 /* === Customers Say Section === */
 .testimonials {
   text-align: center;
@@ -257,9 +278,25 @@ footer {
 }
 
 .testimonials h2 {
-  font-size: 2.2rem;
-  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
   color: #333;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.testimonials h2::after {
+  content: '';
+  width: 50%;
+  height: 4px;
+  background-color: #f4ce14;
+  position: absolute;
+  left: 25%;
+  bottom: 0;
+  border-radius: 2px;
 }
 
 .testimonial-grid {
@@ -360,12 +397,13 @@ footer {
 
   .specials h2{
     font-size: 1.6rem;
+    padding-top: 1rem;
   }
 
   /* Responsive Call To Action Section */
   .call-to-action {
     flex-direction: column;
-    padding: 3rem 1rem;
+    padding: 3.5rem 1rem;
   }
 
   .cta-content h2 {
