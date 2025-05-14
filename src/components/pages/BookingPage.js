@@ -30,3 +30,4 @@ function BookingPage() {
 }
 
 export default BookingPage;
+export { initializeTimes, updateTimes };
