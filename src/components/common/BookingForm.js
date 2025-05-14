@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
 
-function BookingForm() {
+function BookingForm({ availableTimes, dispatch }) {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState('Birthday');
 
-  const [availableTimes, setAvailableTimes] = useState([
-    '17:00',
-    '18:00',
-    '19:00',
-    '20:00',
-    '21:00',
-  ]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can later send this data to the server
     console.log({ date, time, guests, occasion });
+  };
+
+  const handleDateChange = (e) => {
+    const selectedDate = e.target.value;
+    setDate(selectedDate);
+    dispatch({ type: 'UPDATE_TIMES', payload: selectedDate });
   };
 
   return (
@@ -27,7 +24,7 @@ function BookingForm() {
         type="date"
         id="res-date"
         value={date}
-        onChange={(e) => setDate(e.target.value)}
+        onChange={handleDateChange}
         required
       />
 
