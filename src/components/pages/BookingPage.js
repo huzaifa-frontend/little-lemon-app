@@ -1,9 +1,10 @@
 import React, { useReducer } from "react";
 import BookingForm from "../common/BookingForm";
+import { fetchAPI } from '../../api';
 
-// Simulated function to fetch available times for a date
+// Function to fetch available times using the provided API
 const fetchAvailableTimes = (date) => {
-  return ['17:00', '18:00', '19:00', '20:00', '21:00'];
+  return fetchAPI(new Date(date));
 };
 
 // Reducer to update available times
@@ -15,7 +16,10 @@ const updateTimes = (state, action) => {
 };
 
 // Initializer for available times
-const initializeTimes = () => fetchAvailableTimes(new Date());
+const initializeTimes = () => {
+  const today = new Date();
+  return fetchAvailableTimes(today);
+};
 
 function BookingPage() {
   const [availableTimes, dispatch] = useReducer(updateTimes, [], initializeTimes);
