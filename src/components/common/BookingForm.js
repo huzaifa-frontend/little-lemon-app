@@ -1,78 +1,125 @@
-import React, { useState } from 'react';
+import React from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 function BookingForm({ availableTimes, dispatch, submitForm }) {
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
-  const [guests, setGuests] = useState(1);
-  const [occasion, setOccasion] = useState('Birthday');
+  // Formik setup with validation schema
+  const formik = useFormik({
+    initialValues: {
+      date: null,
+      time: "",
+      guests: 1,
+      occasion: "Birthday",
+    },
+    validationSchema: Yup.object({
+      date: Yup.date()
+        .nullable()
+        .transform((value, originalValue) => {
+          if (!originalValue) return null;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+          const parsedDate = new Date(originalValue);
+          return isNaN(parsedDate) ? null : parsedDate;
+        })
+        .required("Date is required")
+        .min(new Date().setHours(0, 0, 0, 0), "Date cannot be in the past"),
+      time: Yup.string().required("Time is required"),
+      guests: Yup.number()
+        .required("Number of guests is required")
+        .min(1, "At least 1 guest is required")
+        .max(10, "Maximum 10 guests allowed"),
+      occasion: Yup.string().required("Occasion is required"),
+    }),
+    validateOnMount: true,
+    onSubmit: (values) => {
+      submitForm({
+        ...values,
+        guests: Number(values.guests),
+      });
+    },
+  });
 
-    // Prepare form data object
-    const formData = {
-      date,
-      time,
-      guests: Number(guests), // convert to number
-      occasion,
-    };
-
-    // Call the submitForm prop function
-    submitForm(formData);
-  };
-
+  // Update available times when date changes
   const handleDateChange = (e) => {
-    const selectedDate = e.target.value;
-    setDate(selectedDate);
-    dispatch({ type: 'UPDATE_TIMES', payload: selectedDate });
+    formik.handleChange(e); // update formik date value
+    dispatch({ type: "UPDATE_TIMES", payload: e.target.value });
   };
 
   return (
-    <form className="booking-form" onSubmit={handleSubmit} style={{ display: 'grid', maxWidth: '300px', gap: '20px' }}>
-      <label htmlFor="res-date">Choose date</label>
+    <form
+      className="booking-form"
+      onSubmit={formik.handleSubmit}
+      style={{ display: "grid", maxWidth: "300px", gap: "20px" }}
+      noValidate
+    >
+      <label htmlFor="date">Choose date</label>
       <input
         type="date"
-        id="res-date"
-        value={date}
+        id="date"
+        name="date"
+        value={formik.values.date}
         onChange={handleDateChange}
+        onBlur={formik.handleBlur}
         required
       />
+      {formik.touched.date && formik.errors.date ? (
+        <div className="error">{formik.errors.date}</div>
+      ) : null}
 
-      <label htmlFor="res-time">Choose time</label>
+      <label htmlFor="time">Choose time</label>
       <select
-        id="res-time"
-        value={time}
-        onChange={(e) => setTime(e.target.value)}
+        id="time"
+        name="time"
+        value={formik.values.time}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         required
       >
         <option value="">Select a time</option>
         {availableTimes.map((t) => (
-          <option key={t} value={t}>{t}</option>
+          <option key={t} value={t}>
+            {t}
+          </option>
         ))}
       </select>
+      {formik.touched.time && formik.errors.time ? (
+        <div className="error">{formik.errors.time}</div>
+      ) : null}
 
       <label htmlFor="guests">Number of Guests</label>
       <input
         type="number"
         id="guests"
-        value={guests}
-        onChange={(e) => setGuests(e.target.value)}
+        name="guests"
+        value={formik.values.guests}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         min="1"
+        max="10"
         required
       />
+      {formik.touched.guests && formik.errors.guests ? (
+        <div className="error">{formik.errors.guests}</div>
+      ) : null}
 
       <label htmlFor="occasion">Occasion</label>
       <select
         id="occasion"
-        value={occasion}
-        onChange={(e) => setOccasion(e.target.value)}
+        name="occasion"
+        value={formik.values.occasion}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         required
       >
-        <option>Birthday</option>
-        <option>Anniversary</option>
+        <option value="Birthday">Birthday</option>
+        <option value="Anniversary">Anniversary</option>
       </select>
+      {formik.touched.occasion && formik.errors.occasion ? (
+        <div className="error">{formik.errors.occasion}</div>
+      ) : null}
 
-      <button type="submit">Book Now</button>
+      <button type="submit" disabled={!formik.isValid || formik.isSubmitting}>
+        Book Now
+      </button>
     </form>
   );
 }

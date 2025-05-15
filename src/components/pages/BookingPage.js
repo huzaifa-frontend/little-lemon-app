@@ -1,21 +1,21 @@
 import React, { useReducer } from "react";
 import BookingForm from "../common/BookingForm";
-import { fetchAPI } from '../../api';
+import { fetchAPI, submitAPI } from "../../api"; // Optional: only needed if you use submitAPI here
 
-// Function to fetch available times using the provided API
+// Fetch times for a given date
 const fetchAvailableTimes = (date) => {
   return fetchAPI(new Date(date));
 };
 
 // Reducer to update available times
 const updateTimes = (state, action) => {
-  if (action.type === 'UPDATE_TIMES') {
+  if (action.type === "UPDATE_TIMES") {
     return fetchAvailableTimes(action.payload);
   }
   return state;
 };
 
-// Initializer for available times
+// Initialize times on component mount
 const initializeTimes = () => {
   const today = new Date();
   return fetchAvailableTimes(today);
@@ -28,8 +28,13 @@ function BookingPage({ submitForm }) {
     <main className="booking-page">
       <h1>Reserve a Table</h1>
       <p>Fill in your details below to book a table at Little Lemon.</p>
-      {/* Pass submitForm down to BookingForm */}
-      <BookingForm availableTimes={availableTimes} dispatch={dispatch} submitForm={submitForm} />
+
+      {/* Pass all required props to BookingForm */}
+      <BookingForm
+        availableTimes={availableTimes}
+        dispatch={dispatch}
+        submitForm={submitForm}
+      />
     </main>
   );
 }
