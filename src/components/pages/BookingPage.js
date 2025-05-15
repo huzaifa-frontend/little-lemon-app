@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 import BookingForm from "../common/BookingForm";
-import { fetchAPI, submitAPI } from "../../api"; // Optional: only needed if you use submitAPI here
+import { fetchAPI, submitAPI } from "../../api";
 
 // Fetch times for a given date
 const fetchAvailableTimes = (date) => {

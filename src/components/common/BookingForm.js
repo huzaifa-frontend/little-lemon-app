@@ -3,7 +3,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 function BookingForm({ availableTimes, dispatch, submitForm }) {
-  // Formik setup with validation schema
   const formik = useFormik({
     initialValues: {
       date: null,
@@ -16,7 +15,6 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         .nullable()
         .transform((value, originalValue) => {
           if (!originalValue) return null;
-
           const parsedDate = new Date(originalValue);
           return isNaN(parsedDate) ? null : parsedDate;
         })
@@ -38,9 +36,8 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
     },
   });
 
-  // Update available times when date changes
   const handleDateChange = (e) => {
-    formik.handleChange(e); // update formik date value
+    formik.handleChange(e);
     dispatch({ type: "UPDATE_TIMES", payload: e.target.value });
   };
 
@@ -50,21 +47,28 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
       onSubmit={formik.handleSubmit}
       style={{ display: "grid", maxWidth: "300px", gap: "20px" }}
       noValidate
+      aria-label="Booking Form"
     >
+      {/* Date */}
       <label htmlFor="date">Choose date</label>
       <input
         type="date"
         id="date"
         name="date"
-        value={formik.values.date}
+        value={formik.values.date || ""}
         onChange={handleDateChange}
         onBlur={formik.handleBlur}
         required
+        aria-required="true"
+        aria-invalid={!!(formik.touched.date && formik.errors.date)}
       />
-      {formik.touched.date && formik.errors.date ? (
-        <div className="error">{formik.errors.date}</div>
-      ) : null}
+      {formik.touched.date && formik.errors.date && (
+        <div className="error" role="alert" aria-live="polite">
+          {formik.errors.date}
+        </div>
+      )}
 
+      {/* Time */}
       <label htmlFor="time">Choose time</label>
       <select
         id="time"
@@ -73,6 +77,8 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         required
+        aria-required="true"
+        aria-invalid={!!(formik.touched.time && formik.errors.time)}
       >
         <option value="">Select a time</option>
         {availableTimes.map((t) => (
@@ -81,10 +87,13 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
           </option>
         ))}
       </select>
-      {formik.touched.time && formik.errors.time ? (
-        <div className="error">{formik.errors.time}</div>
-      ) : null}
+      {formik.touched.time && formik.errors.time && (
+        <div className="error" role="alert" aria-live="polite">
+          {formik.errors.time}
+        </div>
+      )}
 
+      {/* Guests */}
       <label htmlFor="guests">Number of Guests</label>
       <input
         type="number"
@@ -96,11 +105,16 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         min="1"
         max="10"
         required
+        aria-required="true"
+        aria-invalid={!!(formik.touched.guests && formik.errors.guests)}
       />
-      {formik.touched.guests && formik.errors.guests ? (
-        <div className="error">{formik.errors.guests}</div>
-      ) : null}
+      {formik.touched.guests && formik.errors.guests && (
+        <div className="error" role="alert" aria-live="polite">
+          {formik.errors.guests}
+        </div>
+      )}
 
+      {/* Occasion */}
       <label htmlFor="occasion">Occasion</label>
       <select
         id="occasion"
@@ -109,15 +123,24 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         required
+        aria-required="true"
+        aria-invalid={!!(formik.touched.occasion && formik.errors.occasion)}
       >
         <option value="Birthday">Birthday</option>
         <option value="Anniversary">Anniversary</option>
       </select>
-      {formik.touched.occasion && formik.errors.occasion ? (
-        <div className="error">{formik.errors.occasion}</div>
-      ) : null}
+      {formik.touched.occasion && formik.errors.occasion && (
+        <div className="error" role="alert" aria-live="polite">
+          {formik.errors.occasion}
+        </div>
+      )}
 
-      <button type="submit" disabled={!formik.isValid || formik.isSubmitting}>
+      {/* Submit */}
+      <button
+        type="submit"
+        disabled={!formik.isValid || formik.isSubmitting}
+        aria-label="Submit Booking Form"
+      >
         Book Now
       </button>
     </form>
