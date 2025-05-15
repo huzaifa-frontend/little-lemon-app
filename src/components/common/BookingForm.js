@@ -1,11 +1,21 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import {
+  Box,
+  TextField,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+  FormHelperText,
+  Button,
+} from "@mui/material";
 
 function BookingForm({ availableTimes, dispatch, submitForm }) {
   const formik = useFormik({
     initialValues: {
-      date: null,
+      date: "",
       time: "",
       guests: 1,
       occasion: "Birthday",
@@ -42,108 +52,122 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
   };
 
   return (
-    <form
-      className="booking-form"
+    <Box
+      component="form"
       onSubmit={formik.handleSubmit}
-      style={{ display: "grid", maxWidth: "300px", gap: "20px" }}
+      sx={{ maxWidth: 300, display: "grid", gap: 3 }}
       noValidate
       aria-label="Booking Form"
     >
       {/* Date */}
-      <label htmlFor="date">Choose date</label>
-      <input
-        type="date"
+      <TextField
         id="date"
         name="date"
-        value={formik.values.date || ""}
+        label="Choose date"
+        type="date"
+        value={formik.values.date}
         onChange={handleDateChange}
         onBlur={formik.handleBlur}
+        InputLabelProps={{ shrink: true }}
+        error={formik.touched.date && Boolean(formik.errors.date)}
+        helperText={formik.touched.date && formik.errors.date}
         required
-        aria-required="true"
-        aria-invalid={!!(formik.touched.date && formik.errors.date)}
+        inputProps={{
+          "aria-required": true,
+          "aria-invalid": !!(formik.touched.date && formik.errors.date),
+        }}
       />
-      {formik.touched.date && formik.errors.date && (
-        <div className="error" role="alert" aria-live="polite">
-          {formik.errors.date}
-        </div>
-      )}
 
       {/* Time */}
-      <label htmlFor="time">Choose time</label>
-      <select
-        id="time"
-        name="time"
-        value={formik.values.time}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
+      <FormControl
+        fullWidth
+        error={formik.touched.time && Boolean(formik.errors.time)}
         required
-        aria-required="true"
-        aria-invalid={!!(formik.touched.time && formik.errors.time)}
       >
-        <option value="">Select a time</option>
-        {availableTimes.map((t) => (
-          <option key={t} value={t}>
-            {t}
-          </option>
-        ))}
-      </select>
-      {formik.touched.time && formik.errors.time && (
-        <div className="error" role="alert" aria-live="polite">
-          {formik.errors.time}
-        </div>
-      )}
+        <InputLabel id="time-label">Choose time</InputLabel>
+        <Select
+          labelId="time-label"
+          id="time"
+          name="time"
+          value={formik.values.time}
+          label="Choose time"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          inputProps={{
+            "aria-required": true,
+            "aria-invalid": !!(formik.touched.time && formik.errors.time),
+          }}
+        >
+          <MenuItem value="">
+            <em>Select a time</em>
+          </MenuItem>
+          {availableTimes.map((t) => (
+            <MenuItem key={t} value={t}>
+              {t}
+            </MenuItem>
+          ))}
+        </Select>
+        {formik.touched.time && formik.errors.time && (
+          <FormHelperText>{formik.errors.time}</FormHelperText>
+        )}
+      </FormControl>
 
       {/* Guests */}
-      <label htmlFor="guests">Number of Guests</label>
-      <input
-        type="number"
+      <TextField
         id="guests"
         name="guests"
+        label="Number of Guests"
+        type="number"
         value={formik.values.guests}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        min="1"
-        max="10"
+        inputProps={{ min: 1, max: 10 }}
+        error={formik.touched.guests && Boolean(formik.errors.guests)}
+        helperText={formik.touched.guests && formik.errors.guests}
         required
         aria-required="true"
         aria-invalid={!!(formik.touched.guests && formik.errors.guests)}
       />
-      {formik.touched.guests && formik.errors.guests && (
-        <div className="error" role="alert" aria-live="polite">
-          {formik.errors.guests}
-        </div>
-      )}
 
       {/* Occasion */}
-      <label htmlFor="occasion">Occasion</label>
-      <select
-        id="occasion"
-        name="occasion"
-        value={formik.values.occasion}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
+      <FormControl
+        fullWidth
+        error={formik.touched.occasion && Boolean(formik.errors.occasion)}
         required
-        aria-required="true"
-        aria-invalid={!!(formik.touched.occasion && formik.errors.occasion)}
       >
-        <option value="Birthday">Birthday</option>
-        <option value="Anniversary">Anniversary</option>
-      </select>
-      {formik.touched.occasion && formik.errors.occasion && (
-        <div className="error" role="alert" aria-live="polite">
-          {formik.errors.occasion}
-        </div>
-      )}
+        <InputLabel id="occasion-label">Occasion</InputLabel>
+        <Select
+          labelId="occasion-label"
+          id="occasion"
+          name="occasion"
+          value={formik.values.occasion}
+          label="Occasion"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          inputProps={{
+            "aria-required": true,
+            "aria-invalid": !!(formik.touched.occasion && formik.errors.occasion),
+          }}
+        >
+          <MenuItem value="Birthday">Birthday</MenuItem>
+          <MenuItem value="Anniversary">Anniversary</MenuItem>
+        </Select>
+        {formik.touched.occasion && formik.errors.occasion && (
+          <FormHelperText>{formik.errors.occasion}</FormHelperText>
+        )}
+      </FormControl>
 
       {/* Submit */}
-      <button
+      <Button
         type="submit"
+        variant="contained"
+        color="primary"
         disabled={!formik.isValid || formik.isSubmitting}
         aria-label="Submit Booking Form"
       >
         Book Now
-      </button>
-    </form>
+      </Button>
+    </Box>
   );
 }
 
