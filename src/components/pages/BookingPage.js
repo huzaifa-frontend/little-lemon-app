@@ -21,14 +21,15 @@ const initializeTimes = () => {
   return fetchAvailableTimes(today);
 };
 
-function BookingPage() {
+function BookingPage({ submitForm }) {
   const [availableTimes, dispatch] = useReducer(updateTimes, [], initializeTimes);
 
   return (
     <main className="booking-page">
       <h1>Reserve a Table</h1>
       <p>Fill in your details below to book a table at Little Lemon.</p>
-      <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
+      {/* Pass submitForm down to BookingForm */}
+      <BookingForm availableTimes={availableTimes} dispatch={dispatch} submitForm={submitForm} />
     </main>
   );
 }
