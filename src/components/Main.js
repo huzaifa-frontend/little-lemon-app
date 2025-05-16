@@ -4,13 +4,17 @@ import BookingPage from './pages/BookingPage';
 import ConfirmedBooking from './pages/ConfirmedBooking';
 import { submitAPI } from '../api';
 
-
 function Main() {
   const navigate = useNavigate();
 
   const submitForm = (formData) => {
     if (submitAPI(formData)) {
-      navigate('/booking-confirmed');
+      navigate('/booking-confirmed', {
+        state: {
+          ...formData,
+          showSnackbar: true,
+        },
+      });
     }
   };
 
