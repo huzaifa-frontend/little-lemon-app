@@ -142,15 +142,6 @@ main {
   text-align: center;
 }
 
-/* === Footer Section === */
-footer {
-  background-color: #495e57;
-  color: white;
-  text-align: center;
-  padding: 15px 0;
-  font-size: 14px;
-}
-
 /* === Specials Section === */
 .specials {
   padding: 5rem;
@@ -431,6 +422,87 @@ footer {
   padding: 0 1rem;
 }
 
+/* === Footer Section === */
+footer {
+  background-color: #495e57;
+  color: white;
+  width: 100%;
+  padding: 30px 0;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.footer-section {
+  flex: 1 1 200px;
+  min-width: 200px;
+}
+
+.footer-section h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #f4ce14;
+}
+
+.footer-section p,
+.footer-section li,
+.footer-section a {
+  color: #ffffff;
+  text-decoration: none;
+  line-height: 1.8;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section a:hover {
+  color: #f4ce14;
+  text-decoration: underline;
+}
+
+.company-rights {
+  flex-basis: 100%;
+  margin-top: 20px;
+  border-top: 1px solid #ffffff33;
+  padding-top: 15px;
+  font-size: 13px;
+}
+
+/* Social icons */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding-top: 10px;
+}
+
+.social-icons li {
+  display: inline-block;
+}
+
+.social-icons a {
+  font-size: 18px;
+  color: white;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #f4ce14;
+}
+
+
 /* === Responsive Styles === */
 @media (max-width: 700px) {
   /* Responsive Navigation */
@@ -576,5 +648,34 @@ footer {
   /* Responsive Booking Page Section */
   .booking-description {
     font-size: 1.2rem;
+  }
+
+/* Responsive Footer Section */
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .footer-section {
+    flex: 1 1 100%;
+    margin-bottom: 20px;
+  }
+
+  .footer-section h4 {
+    margin-bottom: 8px;
+  }
+
+  .social-icons {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .company-rights {
+    margin-top: 10px;
+    padding-top: 10px;
+    font-size: 12px;
   }
 }
