@@ -63,7 +63,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
       occasion: Yup.string().required("Occasion is required"),
     }),
     validateOnMount: true,
-    // validateOnChange: false,
+    validateOnChange: false, //When comment this line the form will become more good but it will lag
     onSubmit: (values, { resetForm }) => {
       submitForm({
         ...values,

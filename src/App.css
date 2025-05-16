@@ -168,7 +168,7 @@ footer {
 }
 
 .specials h2::after {
-  content: '';
+  content: "";
   width: 50%;
   height: 4px;
   background-color: #f4ce14;
@@ -283,7 +283,7 @@ footer {
 }
 
 .chicago-heading::after {
-  content: '';
+  content: "";
   width: 50%;
   height: 4px;
   background-color: #f4ce14;
@@ -320,7 +320,7 @@ footer {
   margin-bottom: 1.5rem;
   text-align: justify;
   text-justify: inter-word;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   transition: color 0.3s ease;
 }
 
@@ -361,7 +361,7 @@ footer {
 }
 
 .testimonials h2::after {
-  content: '';
+  content: "";
   width: 50%;
   height: 4px;
   background-color: #f4ce14;
@@ -409,6 +409,26 @@ footer {
 .testimonial-name {
   font-weight: bold;
   color: #222;
+}
+
+/* === Booking Page Section === */
+.booking-page {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.booking-description {
+  font-size: 1.35rem;
+  color: #444;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  padding: 0 1rem;
 }
 
 /* === Responsive Styles === */
@@ -467,7 +487,7 @@ footer {
     padding: 1rem;
   }
 
-  .specials h2{
+  .specials h2 {
     font-size: 1.8rem;
     padding-top: 2rem;
   }
@@ -519,8 +539,8 @@ footer {
     margin-bottom: 0.5rem;
   }
 
-   /* Responsive Chicago Section */
-     .chicago-info {
+  /* Responsive Chicago Section */
+  .chicago-info {
     flex-direction: column;
     padding: 25px 20px;
     text-align: center;
@@ -551,5 +571,10 @@ footer {
     max-height: 300px;
     margin-top: 15px;
     border-radius: 12px;
+  }
+
+  /* Responsive Booking Page Section */
+  .booking-description {
+    font-size: 1.2rem;
   }
 }

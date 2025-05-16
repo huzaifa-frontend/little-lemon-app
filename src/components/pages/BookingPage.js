@@ -23,7 +23,7 @@ function BookingPage({ submitForm }) {
 
   return (
     <main className="booking-page">
-      <p>Fill in your details below to book a table at Little Lemon.</p>
+      <p className="booking-description">Fill in your details below to book a table at Little Lemon.</p>
       <BookingForm
         availableTimes={availableTimes}
         dispatch={dispatch}
