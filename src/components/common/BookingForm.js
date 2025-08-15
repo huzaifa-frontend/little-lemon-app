@@ -211,89 +211,87 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
         >
           <Box component="form" onSubmit={formik.handleSubmit} noValidate>
             <Grid container spacing={3}>
-              {/* Personal Information Section */}
+              {/* Personal Information Heading */}
               <Grid item xs={12}>
-                <Slide direction="right" in={true} timeout={600}>
-                  <Typography
-                    variant="h5"
-                    fontWeight={600}
-                    color="primary"
-                    display="flex"
-                    alignItems="center"
-                    gap={1}
-                    sx={{ mb: 3 }}
-                  >
-                    <Person /> Personal Information
-                  </Typography>
-                </Slide>
+                <Fade in={true} timeout={600}>
+                  <Box mb={3} display="flex" justifyContent="center" alignItems="center" gap={1}>
+                    <Person sx={{ fontSize: 28 }} color="primary" />
+                    <Typography variant="h5" fontWeight={600} color="primary">
+                      Personal Information
+                    </Typography>
+                  </Box>
+                </Fade>
               </Grid>
 
-              <Grid item xs={12} md={6}>
-                <Zoom in={true} timeout={800} style={{ transitionDelay: "100ms" }}>
-                  <TextField
-                    id="firstName"
-                    name="firstName"
-                    label="First Name"
-                    value={formik.values.firstName}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    error={formik.touched.firstName && Boolean(formik.errors.firstName)}
-                    helperText={formik.touched.firstName && formik.errors.firstName}
-                    required
-                    fullWidth
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <Person color="action" />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: 2,
-                        transition: "all 0.3s ease-in-out",
-                        "&:hover": {
-                          transform: "translateY(-2px)",
-                          boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+              {/* Personal Information Inputs */}
+              <Grid container spacing={3}>
+                <Grid item xs={12} md={6}>
+                  <Zoom in={true} timeout={800} style={{ transitionDelay: "100ms" }}>
+                    <TextField
+                      id="firstName"
+                      name="firstName"
+                      label="First Name"
+                      value={formik.values.firstName}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                      helperText={formik.touched.firstName && formik.errors.firstName}
+                      required
+                      fullWidth
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <Person color="action" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          borderRadius: 2,
+                          transition: "all 0.3s ease-in-out",
+                          "&:hover": {
+                            transform: "translateY(-2px)",
+                            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                          },
                         },
-                      },
-                    }}
-                  />
-                </Zoom>
-              </Grid>
+                      }}
+                    />
+                  </Zoom>
+                </Grid>
 
-              <Grid item xs={12} md={6}>
-                <Zoom in={true} timeout={800} style={{ transitionDelay: "200ms" }}>
-                  <TextField
-                    id="lastName"
-                    name="lastName"
-                    label="Last Name"
-                    value={formik.values.lastName}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    error={formik.touched.lastName && Boolean(formik.errors.lastName)}
-                    helperText={formik.touched.lastName && formik.errors.lastName}
-                    required
-                    fullWidth
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <Person color="action" />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: 2,
-                        transition: "all 0.3s ease-in-out",
-                        "&:hover": {
-                          transform: "translateY(-2px)",
-                          boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                <Grid item xs={12} md={6}>
+                  <Zoom in={true} timeout={800} style={{ transitionDelay: "200ms" }}>
+                    <TextField
+                      id="lastName"
+                      name="lastName"
+                      label="Last Name"
+                      value={formik.values.lastName}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+                      helperText={formik.touched.lastName && formik.errors.lastName}
+                      required
+                      fullWidth
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <Person color="action" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          borderRadius: 2,
+                          transition: "all 0.3s ease-in-out",
+                          "&:hover": {
+                            transform: "translateY(-2px)",
+                            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                          },
                         },
-                      },
-                    }}
-                  />
-                </Zoom>
+                      }}
+                    />
+                  </Zoom>
+                </Grid>
               </Grid>
 
               <Grid item xs={12} md={6}>
@@ -365,199 +363,197 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                   />
                 </Zoom>
               </Grid>
-
               {/* Reservation Details Section */}
-              <Grid item xs={12}>
-                <Slide direction="left" in={true} timeout={600}>
-                  <Typography
-                    variant="h5"
-                    fontWeight={600}
-                    color="primary"
-                    display="flex"
-                    alignItems="center"
-                    gap={1}
-                    sx={{ mt: 4, mb: 3 }}
-                  >
-                    <Restaurant /> Reservation Details
-                  </Typography>
-                </Slide>
+              <Grid container justifyContent="center" mb={3}>
+                <Grid item xs={12}>
+                  <Slide direction="left" in={true} timeout={600}>
+                    <Box display="flex" alignItems="center" gap={1} px={2}>
+                      <Restaurant sx={{ fontSize: 28 }} color="primary" />
+                      <Typography variant="h5" fontWeight={600} color="primary">
+                        Reservation Details
+                      </Typography>
+                    </Box>
+                  </Slide>
+                </Grid>
               </Grid>
 
-              <Grid item xs={12} md={6}>
-                <Zoom in={true} timeout={800} style={{ transitionDelay: "500ms" }}>
-                  <TextField
-                    id="date"
-                    name="date"
-                    label="Choose Date"
-                    type="date"
-                    value={formik.values.date}
-                    onChange={handleDateChange}
-                    onBlur={formik.handleBlur}
-                    InputLabelProps={{ shrink: true }}
-                    error={formik.touched.date && Boolean(formik.errors.date)}
-                    helperText={formik.touched.date && formik.errors.date}
-                    required
-                    fullWidth
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <DateRange color="action" />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: 2,
-                        transition: "all 0.3s ease-in-out",
-                        "&:hover": {
-                          transform: "translateY(-2px)",
-                          boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+              <Grid container spacing={3}>
+                <Grid item xs={12} md={6}>
+                  <Zoom in={true} timeout={800} style={{ transitionDelay: "500ms" }}>
+                    <TextField
+                      id="date"
+                      name="date"
+                      label="Choose Date"
+                      type="date"
+                      value={formik.values.date}
+                      onChange={handleDateChange}
+                      onBlur={formik.handleBlur}
+                      InputLabelProps={{ shrink: true }}
+                      error={formik.touched.date && Boolean(formik.errors.date)}
+                      helperText={formik.touched.date && formik.errors.date}
+                      required
+                      fullWidth
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <DateRange color="action" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          borderRadius: 2,
+                          transition: "all 0.3s ease-in-out",
+                          "&:hover": {
+                            transform: "translateY(-2px)",
+                            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                          },
                         },
-                      },
-                    }}
-                  />
-                </Zoom>
-              </Grid>
+                      }}
+                    />
+                  </Zoom>
+                </Grid>
 
-              <Grid item xs={12} md={6}>
-                <Zoom in={true} timeout={800} style={{ transitionDelay: "600ms" }}>
-                  <FormControl
-                    fullWidth
-                    error={formik.touched.time && Boolean(formik.errors.time)}
-                    required
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: 2,
-                        transition: "all 0.3s ease-in-out",
-                        "&:hover": {
-                          transform: "translateY(-2px)",
-                          boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                <Grid item xs={12} md={6}>
+                  <Zoom in={true} timeout={800} style={{ transitionDelay: "600ms" }}>
+                    <FormControl
+                      fullWidth
+                      error={formik.touched.time && Boolean(formik.errors.time)}
+                      required
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          borderRadius: 2,
+                          transition: "all 0.3s ease-in-out",
+                          "&:hover": {
+                            transform: "translateY(-2px)",
+                            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                          },
                         },
-                      },
-                    }}
-                  >
-                    <InputLabel id="time-label">Choose Time</InputLabel>
-                    <Select
-                      labelId="time-label"
-                      id="time"
-                      name="time"
-                      value={formik.values.time}
-                      label="Choose Time"
+                      }}
+                    >
+                      <InputLabel id="time-label">Choose Time</InputLabel>
+                      <Select
+                        labelId="time-label"
+                        id="time"
+                        name="time"
+                        value={formik.values.time}
+                        label="Choose Time"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        startAdornment={
+                          <InputAdornment position="start">
+                            <Schedule color="action" />
+                          </InputAdornment>
+                        }
+                      >
+                        <MenuItem value="">
+                          <em>Select a time</em>
+                        </MenuItem>
+                        {availableTimes.map((t) => (
+                          <MenuItem key={t} value={t}>
+                            {t}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                      {formik.touched.time && formik.errors.time && (
+                        <FormHelperText>{formik.errors.time}</FormHelperText>
+                      )}
+                    </FormControl>
+                  </Zoom>
+                </Grid>
+
+                <Grid item xs={12} md={6}>
+                  <Zoom in={true} timeout={800} style={{ transitionDelay: "700ms" }}>
+                    <TextField
+                      id="guests"
+                      name="guests"
+                      label="Number of Guests"
+                      type="number"
+                      value={formik.values.guests}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      startAdornment={
-                        <InputAdornment position="start">
-                          <Schedule color="action" />
-                        </InputAdornment>
-                      }
-                    >
-                      <MenuItem value="">
-                        <em>Select a time</em>
-                      </MenuItem>
-                      {availableTimes.map((t) => (
-                        <MenuItem key={t} value={t}>
-                          {t}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                    {formik.touched.time && formik.errors.time && (
-                      <FormHelperText>{formik.errors.time}</FormHelperText>
-                    )}
-                  </FormControl>
-                </Zoom>
-              </Grid>
-
-              <Grid item xs={12} md={6}>
-                <Zoom in={true} timeout={800} style={{ transitionDelay: "700ms" }}>
-                  <TextField
-                    id="guests"
-                    name="guests"
-                    label="Number of Guests"
-                    type="number"
-                    value={formik.values.guests}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    inputProps={{ min: 1, max: 10 }}
-                    error={formik.touched.guests && Boolean(formik.errors.guests)}
-                    helperText={formik.touched.guests && formik.errors.guests}
-                    required
-                    fullWidth
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <Groups color="action" />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: 2,
-                        transition: "all 0.3s ease-in-out",
-                        "&:hover": {
-                          transform: "translateY(-2px)",
-                          boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                      inputProps={{ min: 1, max: 10 }}
+                      error={formik.touched.guests && Boolean(formik.errors.guests)}
+                      helperText={formik.touched.guests && formik.errors.guests}
+                      required
+                      fullWidth
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <Groups color="action" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          borderRadius: 2,
+                          transition: "all 0.3s ease-in-out",
+                          "&:hover": {
+                            transform: "translateY(-2px)",
+                            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                          },
                         },
-                      },
-                    }}
-                  />
-                </Zoom>
-              </Grid>
+                      }}
+                    />
+                  </Zoom>
+                </Grid>
 
-              <Grid item xs={12} md={6}>
-                <Zoom in={true} timeout={800} style={{ transitionDelay: "800ms" }}>
-                  <FormControl
-                    fullWidth
-                    error={formik.touched.occasion && Boolean(formik.errors.occasion)}
-                    required
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: 2,
-                        transition: "all 0.3s ease-in-out",
-                        "&:hover": {
-                          transform: "translateY(-2px)",
-                          boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                <Grid item xs={12} md={6}>
+                  <Zoom in={true} timeout={800} style={{ transitionDelay: "800ms" }}>
+                    <FormControl
+                      fullWidth
+                      error={formik.touched.occasion && Boolean(formik.errors.occasion)}
+                      required
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          borderRadius: 2,
+                          transition: "all 0.3s ease-in-out",
+                          "&:hover": {
+                            transform: "translateY(-2px)",
+                            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                          },
                         },
-                      },
-                    }}
-                  >
-                    <InputLabel id="occasion-label">Occasion</InputLabel>
-                    <Select
-                      labelId="occasion-label"
-                      id="occasion"
-                      name="occasion"
-                      value={formik.values.occasion}
-                      label="Occasion"
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      startAdornment={
-                        <InputAdornment position="start">
-                          <Celebration color="action" />
-                        </InputAdornment>
-                      }
+                      }}
                     >
-                      {["Birthday", "Anniversary", "Casual"].map((occasion) => (
-                        <MenuItem key={occasion} value={occasion}>
-                          <Box display="flex" alignItems="center" gap={1}>
-                            <Chip
-                              size="small"
-                              sx={{
-                                backgroundColor: occasionColors[occasion],
-                                color: "white",
-                                minWidth: 8,
-                                height: 8,
-                                "& .MuiChip-label": { display: "none" },
-                              }}
-                            />
-                            {occasion}
-                          </Box>
-                        </MenuItem>
-                      ))}
-                    </Select>
-                    {formik.touched.occasion && formik.errors.occasion && (
-                      <FormHelperText>{formik.errors.occasion}</FormHelperText>
-                    )}
-                  </FormControl>
-                </Zoom>
+                      <InputLabel id="occasion-label">Occasion</InputLabel>
+                      <Select
+                        labelId="occasion-label"
+                        id="occasion"
+                        name="occasion"
+                        value={formik.values.occasion}
+                        label="Occasion"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        startAdornment={
+                          <InputAdornment position="start">
+                            <Celebration color="action" />
+                          </InputAdornment>
+                        }
+                      >
+                        {["Birthday", "Anniversary", "Casual"].map((occasion) => (
+                          <MenuItem key={occasion} value={occasion}>
+                            <Box display="flex" alignItems="center" gap={1}>
+                              <Chip
+                                size="small"
+                                sx={{
+                                  backgroundColor: occasionColors[occasion],
+                                  color: "white",
+                                  minWidth: 8,
+                                  height: 8,
+                                  "& .MuiChip-label": { display: "none" },
+                                }}
+                              />
+                              {occasion}
+                            </Box>
+                          </MenuItem>
+                        ))}
+                      </Select>
+                      {formik.touched.occasion && formik.errors.occasion && (
+                        <FormHelperText>{formik.errors.occasion}</FormHelperText>
+                      )}
+                    </FormControl>
+                  </Zoom>
+                </Grid>
               </Grid>
 
               {/* Submit Button */}
