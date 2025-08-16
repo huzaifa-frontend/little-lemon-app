@@ -138,19 +138,22 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
       <Container maxWidth="md">
         {/* Enhanced Header Section */}
         <Fade in={true} timeout={1000}>
-          <Box textAlign="center" mb={6}>
+          <Box textAlign="center" mb={{ xs: 4, md: 6 }}>
             <Zoom in={true} timeout={1200}>
               <Avatar
                 sx={{
-                  width: 100,
-                  height: 100,
+                  width: { xs: 75, sm: 85, md: 100 },
+                  height: { xs: 75, sm: 85, md: 100 },
                   mx: "auto",
-                  mb: 3,
+                  mb: { xs: 2, md: 3 },
                   background: "linear-gradient(135deg, #495e57 0%, #3a4a45 100%)",
-                  boxShadow: "0 8px 24px rgba(73, 94, 87, 0.3)",
+                  boxShadow: {
+                    xs: "0 4px 16px rgba(73, 94, 87, 0.2)",
+                    md: "0 8px 24px rgba(73, 94, 87, 0.3)"
+                  },
                 }}
               >
-                <LocalDining sx={{ fontSize: 50 }} />
+                <LocalDining sx={{ fontSize: { xs: 35, sm: 42, md: 50 } }} />
               </Avatar>
             </Zoom>
 
@@ -163,8 +166,9 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                 backgroundClip: "text",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
-                mb: 2,
-                fontSize: { xs: "2.5rem", md: "3.75rem" },
+                mb: { xs: 1.5, md: 2 },
+                fontSize: { xs: "1.8rem", sm: "2.2rem", md: "3.75rem" },
+                lineHeight: { xs: 1.2, md: 1.1 }
               }}
             >
               Reserve Your Table
@@ -175,10 +179,12 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
               sx={{
                 color: "text.secondary",
                 fontWeight: 300,
-                mb: 3,
-                maxWidth: 600,
+                mb: { xs: 2, md: 3 },
+                maxWidth: { xs: 350, sm: 500, md: 600 },
                 mx: "auto",
-                lineHeight: 1.4,
+                lineHeight: { xs: 1.3, md: 1.4 },
+                fontSize: { xs: "0.99rem", sm: "1.1rem", md: "1.5rem" },
+                px: { xs: 2, sm: 1, md: 0 }
               }}
             >
               Embark on a culinary journey at Little Lemon - where every meal is a celebration of authentic flavors and unforgettable moments
@@ -186,9 +192,14 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
 
             <Box display="flex" justifyContent="center" alignItems="center" gap={1} mb={2}>
               {[1, 2, 3, 4, 5].map((star) => (
-                <Star key={star} sx={{ color: "#FFD700", fontSize: 28 }} />
+                <Star key={star} sx={{ color: "#FFD700", fontSize: { xs: 20, sm: 24, md: 28 } }} />
               ))}
-              <Typography variant="body1" sx={{ ml: 1, fontWeight: 600, color: "text.secondary" }}>
+              <Typography variant="body1" sx={{
+                ml: { xs: 0.5, md: 1 },
+                fontWeight: 600,
+                color: "text.secondary",
+                fontSize: { xs: "0.8rem", sm: "0.9rem", md: "1rem" }
+              }}>
                 5.0 (2,847 reviews)
               </Typography>
             </Box>
@@ -294,22 +305,29 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                       display="flex"
                       justifyContent="center"
                       alignItems="center"
-                      gap={2}
+                      gap={{ xs: 1, md: 2 }}
                       mb={2}
                     >
-                      <Person sx={{ fontSize: 32, color: "#495e57" }} />
+                      <Person sx={{ fontSize: { xs: 24, sm: 28, md: 32 }, color: "#495e57" }} />
                       <Typography
                         variant="h4"
                         fontWeight={700}
                         sx={{
                           color: "#495e57",
                           position: "relative",
+                          fontSize: { xs: "1.25rem", sm: "1.5rem", md: "2.125rem" },
+                          whiteSpace: "nowrap"
                         }}
                       >
                         Personal Information
                       </Typography>
                     </Box>
-                    <Divider sx={{ maxWidth: 200, mx: "auto", borderWidth: 2, borderColor: "#f4ce14" }} />
+                    <Divider sx={{
+                      maxWidth: { xs: 150, md: 200 },
+                      mx: "auto",
+                      borderWidth: { xs: 1, md: 2 },
+                      borderColor: "#f4ce14"
+                    }} />
                   </Box>
                 </Fade>
 
@@ -454,21 +472,28 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                       display="flex"
                       justifyContent="center"
                       alignItems="center"
-                      gap={2}
+                      gap={{ xs: 1, md: 2 }}
                       mb={2}
                     >
-                      <Restaurant sx={{ fontSize: 32, color: "#495e57" }} />
+                      <Restaurant sx={{ fontSize: { xs: 24, sm: 28, md: 32 }, color: "#495e57" }} />
                       <Typography
                         variant="h4"
                         fontWeight={700}
                         sx={{
                           color: "#495e57",
+                          fontSize: { xs: "1.25rem", sm: "1.5rem", md: "2.125rem" },
+                          whiteSpace: "nowrap"
                         }}
                       >
                         Reservation Details
                       </Typography>
                     </Box>
-                    <Divider sx={{ maxWidth: 200, mx: "auto", borderWidth: 2, borderColor: "#f4ce14" }} />
+                    <Divider sx={{
+                      maxWidth: { xs: 150, md: 200 },
+                      mx: "auto",
+                      borderWidth: { xs: 1, md: 2 },
+                      borderColor: "#f4ce14"
+                    }} />
                   </Box>
                 </Slide>
 
