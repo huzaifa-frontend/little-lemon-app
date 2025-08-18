@@ -106,7 +106,7 @@ function Footer() {
                   <Typography
                     variant="body2"
                     sx={{
-                      mb: 3,
+                      mb: 2,
                       fontSize: "0.9rem",
                       lineHeight: 1.8,
                       animation: 'fadeInUp 0.8s ease-out 0.2s both',
