@@ -19,122 +19,6 @@ body {
   color: #333;
 }
 
-/* === Header Section === */
-header {
-  background-color: #f4ce14;
-  padding: 10px;
-  text-align: center;
-}
-
-header img {
-  width: 150px;
-  height: auto;
-}
-
-/* === Navigation Bar Section === */
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #495e57;
-  padding: 10px 40px;
-  position: relative;
-}
-
-/* === Menu Toggle Button for Mobile === */
-.menu-toggle {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 30px;
-  cursor: pointer;
-  padding: 2px;
-  margin: 0;
-  display: none;
-  transition: transform 0.3s ease;
-}
-
-.menu-toggle div {
-  width: 30px;
-  height: 4px;
-  background-color: white;
-  border-radius: 4px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  margin: 6px 0;
-}
-
-.menu-toggle.active div:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-.menu-toggle.active div:nth-child(2) {
-  opacity: 0;
-}
-.menu-toggle.active div:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* === Navigation Items Container === */
-.nav-container {
-  display: flex;
-  align-items: center;
-  gap: 60px;
-}
-
-/* === Navigation Links === */
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 70px;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 18px;
-  position: relative;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -5px;
-  left: 0;
-  background: linear-gradient(90deg, #f4ce14, #ffea61);
-  box-shadow: 0 0 5px #f4ce14;
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #f4ce14;
-  transform: scale(1.1);
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-/* === Navigation Icons === */
-.nav-icons {
-  display: flex;
-  align-items: center;
-  gap: 35px;
-}
-
-.nav-icons a {
-  color: white;
-  text-decoration: none;
-  font-size: 22px;
-  transition: color 0.3s ease;
-}
-
-.nav-icons a:hover {
-  color: #f4ce14;
-}
-
 /* === Main Content Area === */
 main {
   flex: 1;
@@ -424,55 +308,6 @@ main {
 
 /* === Responsive Styles === */
 @media (max-width: 700px) {
-  /* Responsive Navigation */
-  .menu-toggle {
-    display: block;
-  }
-
-  .nav-container {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    background-color: #495e57;
-    width: 100%;
-    position: absolute;
-    top: 61px;
-    left: 0;
-    padding: 20px 0;
-    z-index: 100;
-    gap: 20px;
-    transition: left 0.4s ease, opacity 0.4s ease;
-    opacity: 0;
-  }
-
-  .nav-container.active {
-    display: flex;
-    left: 0;
-    opacity: 1;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    gap: 20px;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-
-  .nav-container.active .nav-links {
-    opacity: 1;
-  }
-
-  .nav-icons {
-    margin-left: auto;
-    display: flex;
-    gap: 20px;
-  }
-
-  body {
-    padding: 0;
-    overflow-x: hidden;
-  }
-
   /* Responsive Specials Section */
   .specials {
     padding: 1rem;
@@ -562,10 +397,5 @@ main {
     max-height: 300px;
     margin-top: 15px;
     border-radius: 12px;
-  }
-
-  /* Responsive Booking Page Section */
-  .booking-description {
-    font-size: 1.2rem;
   }
 }
