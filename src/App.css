@@ -144,82 +144,10 @@ main {
   border-color: #495e57;
 }
 
-/* ===== Chicago Section ===== */
-.chicago-heading {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 1rem;
-  position: relative;
-  display: inline-block;
-  padding-bottom: 0.5rem;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
-  margin-top: 5rem;
-}
-
-.chicago-heading::after {
-  content: "";
-  width: 50%;
-  height: 4px;
-  background-color: #f4ce14;
-  position: absolute;
-  left: 25%;
-  bottom: 0;
-  border-radius: 2px;
-}
-
-.chicago-info {
-  padding: 80px 40px;
-  background-color: #ffffff;
-  max-width: 1300px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  flex-wrap: wrap;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  margin-bottom: 50px;
-}
-
-.chicago-text {
-  flex: 1;
-  min-width: 300px;
-  text-align: left;
-}
-
-.chicago-info p {
-  font-size: 1.15rem;
-  line-height: 1.8;
-  color: #445;
-  margin-bottom: 1.5rem;
-  text-align: justify;
-  text-justify: inter-word;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  transition: color 0.3s ease;
-}
-
-.chicago-info p:hover {
-  color: #222;
-}
-
-.chicago-image {
-  flex: 1;
-  min-width: 300px;
-}
-
-.chicago-info img {
-  width: 100%;
-  height: 100%;
-  max-height: 500px;
-  object-fit: cover;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
 /* === Customers Say Section === */
 .testimonials {
   text-align: center;
+  margin-top: 1rem;
   padding: 1rem 2rem;
   background-color: #f9f9f9;
 }
@@ -228,7 +156,7 @@ main {
   font-size: 2.5rem;
   font-weight: 700;
   color: #333;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
   position: relative;
   display: inline-block;
   padding-bottom: 0.5rem;
@@ -315,7 +243,7 @@ main {
 
   .specials h2 {
     font-size: 1.8rem;
-    padding-top: 2rem;
+    padding-top: 3.5rem;
   }
 
   /* Responsive Call To Action Section */
@@ -339,7 +267,8 @@ main {
 
   /* Responsive Customers Say Section */
   .testimonials {
-    padding: 1.5rem 1rem;
+    padding: 1rem 1rem;
+    margin-top: 4rem;
     text-align: center;
   }
 
@@ -363,39 +292,5 @@ main {
     font-size: 0.9rem;
     line-height: 1.4;
     margin-bottom: 0.5rem;
-  }
-
-  /* Responsive Chicago Section */
-  .chicago-info {
-    flex-direction: column;
-    padding: 25px 20px;
-    text-align: center;
-    gap: 0px;
-  }
-
-  .chicago-heading {
-    font-size: 1.8rem;
-    margin-top: 2rem;
-  }
-
-  .chicago-text {
-    text-align: center;
-    min-width: 100%;
-  }
-
-  .chicago-info p {
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 1rem;
-  }
-
-  .chicago-image {
-    min-width: 100%;
-  }
-
-  .chicago-info img {
-    max-height: 300px;
-    margin-top: 15px;
-    border-radius: 12px;
   }
 }
