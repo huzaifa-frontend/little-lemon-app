@@ -66,6 +66,8 @@ const StoryContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
   background: 'transparent',
   padding: '0rem 0',
+  // FIXED: Lower z-index to allow floating elements above
+  zIndex: 1,
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -92,7 +94,8 @@ const StoryContainer = styled(Box)(({ theme }) => ({
 
 const ContentSection = styled(Box)(({ theme }) => ({
   position: 'relative',
-  zIndex: 2,
+  // FIXED: Lower z-index to allow floating elements above
+  zIndex: 'auto',
   backdropFilter: 'blur(20px)',
   backgroundColor: 'rgba(255, 255, 255, 0.85)',
   borderRadius: '32px',
@@ -323,6 +326,8 @@ function Chicago() {
         py: 3,
         position: 'relative',
         overflow: 'hidden',
+        // FIXED: Lower z-index to allow floating elements above
+        zIndex: 'auto',
         // Add small spacing before footer
         mb: { xs: 2, md: 3 }
       }}
