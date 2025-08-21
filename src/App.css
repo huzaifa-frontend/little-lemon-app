@@ -95,7 +95,7 @@ main {
 }
 
 /* === Call To Action Section === */
-.call-to-action {
+/* .call-to-action {
   background-color: #f4ce14;
   border-radius: 16px;
   color: #000;
@@ -142,7 +142,7 @@ main {
   background-color: #495e57;
   color: #f4ce14;
   border-color: #495e57;
-}
+} */
 
 /* === Customers Say Section === */
 .testimonials {
@@ -247,7 +247,7 @@ main {
   }
 
   /* Responsive Call To Action Section */
-  .call-to-action {
+  /* .call-to-action {
     flex-direction: column;
     padding: 3.5rem 1rem;
   }
@@ -263,7 +263,7 @@ main {
   .cta-button {
     font-size: 0.95rem;
     padding: 0.65rem 1.25rem;
-  }
+  } */
 
   /* Responsive Customers Say Section */
   .testimonials {
