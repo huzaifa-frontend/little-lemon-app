@@ -4,7 +4,6 @@ import {
   Typography,
   Container,
   Grid,
-  Fade,
   useTheme,
   useMediaQuery,
   Divider
@@ -12,23 +11,29 @@ import {
 import { styled, keyframes } from '@mui/material/styles';
 import MarioA from '../../assets/MarioA.jpg';
 
-// Advanced animations
+// Optimized animations with reduced complexity
 const parallaxFloat = keyframes`
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(1deg); }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
 `;
 
 const textReveal = keyframes`
-  0% { opacity: 0; transform: translateY(30px); }
+  0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
 `;
 
-const imageScale = keyframes`
-  0% { transform: scale(1) rotate(0deg); }
-  100% { transform: scale(1.02) rotate(0.5deg); }
+const fadeInUp = keyframes`
+  0% { 
+    opacity: 0; 
+    transform: translateY(30px);
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0);
+  }
 `;
 
-// Sophisticated styled components
+// Sophisticated styled components with optimized performance
 const StyledHeading = styled(Typography)(({ theme }) => ({
   fontSize: '2.5rem',
   fontWeight: 700,
@@ -98,11 +103,12 @@ const ContentSection = styled(Box)(({ theme }) => ({
     inset 0 1px 0 rgba(255, 255, 255, 0.5),
     0 1px 2px rgba(0, 0, 0, 0.05)
   `,
-  transition: 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)',
+  transition: 'all 0.4s ease',
+  animation: `${fadeInUp} 0.8s ease-out forwards`,
   '&:hover': {
-    transform: 'translateY(-4px)',
+    transform: 'translateY(-2px)',
     boxShadow: `
-      0 20px 60px rgba(0, 0, 0, 0.1),
+      0 16px 48px rgba(0, 0, 0, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.6),
       0 2px 8px rgba(244, 206, 20, 0.1)
     `,
@@ -135,19 +141,22 @@ const ImageContainer = styled(Box)(({ theme }) => ({
     `,
     zIndex: 2,
     opacity: 0,
-    transition: 'opacity 0.5s ease',
+    transition: 'opacity 0.3s ease',
   },
   '&:hover': {
     '&::before': {
       opacity: 1,
     },
     '& img': {
-      transform: 'scale(1.08)',
+      transform: 'scale(1.05)', // Reduced scale for better performance
     },
   },
   [theme.breakpoints.down('md')]: {
-    minHeight: '350px',
+    minHeight: '280px', // Better mobile height
     borderRadius: '20px',
+  },
+  [theme.breakpoints.down('sm')]: {
+    minHeight: '250px',
   },
 }));
 
@@ -155,8 +164,10 @@ const StoryImage = styled('img')(({ theme }) => ({
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-  transition: 'transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)',
+  objectPosition: 'center', // Better centering for mobile
+  transition: 'transform 0.4s ease', // Reduced transition duration
   filter: 'contrast(1.05) saturate(1.1)',
+  willChange: 'transform', // Optimize for transform changes
 }));
 
 const TextContent = styled(Box)(({ theme }) => ({
@@ -171,12 +182,12 @@ const ParagraphText = styled(Typography)(({ theme }) => ({
   fontSize: '1.125rem',
   lineHeight: 1.75,
   color: '#2d3748',
-  marginBottom: '2rem',
+  marginBottom: '1.25rem', // Reduced spacing between paragraphs
   fontFamily: '"Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif',
   fontWeight: 400,
   letterSpacing: '-0.01em',
   position: 'relative',
-  animation: `${textReveal} 0.8s ease-out forwards`,
+  animation: `${textReveal} 0.6s ease-out forwards`, // Reduced animation duration
   '&::first-letter': {
     fontSize: '1.5em',
     fontWeight: 600,
@@ -184,7 +195,7 @@ const ParagraphText = styled(Typography)(({ theme }) => ({
     lineHeight: 1,
   },
   '&:nth-of-type(2)': {
-    animationDelay: '0.2s',
+    animationDelay: '0.1s',
     position: 'relative',
     padding: '1.5rem 2rem',
     background: 'linear-gradient(135deg, rgba(244, 206, 20, 0.04) 0%, rgba(244, 206, 20, 0.08) 100%)',
@@ -192,7 +203,7 @@ const ParagraphText = styled(Typography)(({ theme }) => ({
     borderLeft: '3px solid #f4ce14',
     fontStyle: 'italic',
     fontSize: '1.1rem',
-    margin: '2.5rem 0',
+    margin: '1.5rem 0', // Reduced margin for tighter spacing
     '&::before': {
       content: '""',
       position: 'absolute',
@@ -205,22 +216,22 @@ const ParagraphText = styled(Typography)(({ theme }) => ({
     },
   },
   '&:nth-of-type(3)': {
-    animationDelay: '0.4s',
+    animationDelay: '0.2s',
   },
   [theme.breakpoints.down('md')]: {
     fontSize: '1rem',
     lineHeight: 1.6,
-    marginBottom: '1.5rem',
+    marginBottom: '1rem', // Reduced mobile spacing
     '&:nth-of-type(2)': {
       padding: '1.25rem 1.5rem',
-      margin: '2rem 0',
+      margin: '1.25rem 0', // Reduced mobile margin
       fontSize: '1rem',
     },
   },
 }));
 
 const FinalQuote = styled(Box)(({ theme }) => ({
-  marginTop: '3rem',
+  marginTop: '2rem', // Reduced top margin
   padding: '2rem',
   background: 'linear-gradient(135deg, rgba(45, 55, 72, 0.95) 0%, rgba(26, 32, 44, 0.98) 100%)',
   borderRadius: '20px',
@@ -244,6 +255,10 @@ const FinalQuote = styled(Box)(({ theme }) => ({
     color: '#f4ce14',
     opacity: 0.3,
     fontFamily: 'serif',
+  },
+  [theme.breakpoints.down('md')]: {
+    marginTop: '1.5rem',
+    padding: '1.5rem',
   },
 }));
 
@@ -277,8 +292,9 @@ const FloatingAccent = styled(Box)(({ theme }) => ({
   height: '120px',
   background: 'radial-gradient(circle, rgba(244, 206, 20, 0.1) 0%, transparent 70%)',
   borderRadius: '50%',
-  animation: `${parallaxFloat} 6s ease-in-out infinite`,
+  animation: `${parallaxFloat} 8s ease-in-out infinite`, // Slower animation for smoother performance
   zIndex: 1,
+  willChange: 'transform', // Optimize for transform changes
   '&:nth-of-type(1)': {
     top: '10%',
     right: '15%',
@@ -287,9 +303,12 @@ const FloatingAccent = styled(Box)(({ theme }) => ({
   '&:nth-of-type(2)': {
     bottom: '20%',
     left: '10%',
-    animationDelay: '2s',
+    animationDelay: '4s',
     width: '80px',
     height: '80px',
+  },
+  [theme.breakpoints.down('md')]: {
+    display: 'none', // Hide floating accents on mobile for better performance
   },
 }));
 
@@ -298,7 +317,16 @@ function Chicago() {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box component="section" sx={{ py: 3, position: 'relative', overflow: 'hidden' }}>
+    <Box
+      component="section"
+      sx={{
+        py: 3,
+        position: 'relative',
+        overflow: 'hidden',
+        // Add small spacing before footer
+        mb: { xs: 2, md: 3 }
+      }}
+    >
       <Container maxWidth="xl">
         <Box textAlign="center" mb={3}>
           <StyledHeading variant="h2" component="h2">
@@ -310,42 +338,41 @@ function Chicago() {
           <FloatingAccent />
           <FloatingAccent />
 
-          <Fade in timeout={1000}>
-            <ContentSection>
-              <Grid container spacing={4} alignItems="stretch">
-                <Grid item xs={12} md={6}>
-                  <TextContent>
-                    <ParagraphText>
-                      Nestled in the heart of Chicago's West Loop, Little Lemon was born from a dream of two brothers, Mario and Adrian, who wanted to bring a slice of the Mediterranean to the Windy City.
-                    </ParagraphText>
+          <ContentSection>
+            <Grid container spacing={4} alignItems="stretch">
+              <Grid item xs={12} md={6}>
+                <TextContent>
+                  <ParagraphText>
+                    Nestled in the heart of Chicago's West Loop, Little Lemon was born from a dream of two brothers, Mario and Adrian, who wanted to bring a slice of the Mediterranean to the Windy City.
+                  </ParagraphText>
 
-                    <ParagraphText>
-                      From humble beginnings as a cozy corner café, Little Lemon grew into a vibrant restaurant known for its fresh unforgettable flavors.
-                    </ParagraphText>
+                  <ParagraphText>
+                    From humble beginnings as a cozy corner café, Little Lemon grew into a vibrant restaurant known for its fresh unforgettable flavors.
+                  </ParagraphText>
 
-                    <ParagraphText>
-                      Whether you're here for a family dinner or a casual lunch, we serve tradition on every plate.
-                    </ParagraphText>
+                  <ParagraphText>
+                    Whether you're here for a family dinner or a casual lunch, we serve tradition on every plate.
+                  </ParagraphText>
 
-                    <FinalQuote>
-                      <QuoteText>
-                        Come taste the sunshine of the Mediterranean — right here in Chicago.
-                      </QuoteText>
-                    </FinalQuote>
-                  </TextContent>
-                </Grid>
-
-                <Grid item xs={12} md={6}>
-                  <ImageContainer>
-                    <StoryImage
-                      src={MarioA}
-                      alt="Mario and Adrian at Little Lemon Chicago"
-                    />
-                  </ImageContainer>
-                </Grid>
+                  <FinalQuote>
+                    <QuoteText>
+                      Come taste the sunshine of the Mediterranean — right here in Chicago.
+                    </QuoteText>
+                  </FinalQuote>
+                </TextContent>
               </Grid>
-            </ContentSection>
-          </Fade>
+
+              <Grid item xs={12} md={6}>
+                <ImageContainer>
+                  <StoryImage
+                    src={MarioA}
+                    alt="Mario and Adrian at Little Lemon Chicago"
+                    loading="lazy"
+                  />
+                </ImageContainer>
+              </Grid>
+            </Grid>
+          </ContentSection>
         </StoryContainer>
 
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
