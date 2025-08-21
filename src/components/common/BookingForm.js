@@ -748,20 +748,6 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
           anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
           TransitionComponent={Slide}
         >
-          <Alert
-            severity="success"
-            onClose={() => setOpenSnackbar(false)}
-            sx={{
-              borderRadius: 3,
-              fontWeight: 600,
-              fontSize: "1.1rem",
-              "& .MuiAlert-icon": {
-                fontSize: 28,
-              },
-            }}
-          >
-            🎉 Reservation confirmed! We can't wait to serve you at Little Lemon!
-          </Alert>
         </Snackbar>
       </Container>
     </Box>
