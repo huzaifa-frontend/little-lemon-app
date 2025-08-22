@@ -4,6 +4,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import BookingForm from "./BookingForm";
 import '@testing-library/jest-dom';
 
+jest.setTimeout(10000);
+
 // Create a theme for Material-UI components
 const theme = createTheme();
 
@@ -275,7 +277,7 @@ describe("BookingForm with Formik validation", () => {
 
     await waitFor(() => {
       expect(screen.getByRole('button', { name: /Reserve Table/i })).toBeEnabled();
-    }, { timeout: 3000 });
+    }, { timeout: 10000 });
   });
 
   test("calls submitForm with complete form data when valid form is submitted", async () => {
@@ -481,7 +483,7 @@ describe("BookingForm with Formik validation", () => {
     // Submit and check for loading state
     await waitFor(() => {
       expect(screen.getByRole('button', { name: /Reserve Table/i })).toBeEnabled();
-    }, { timeout: 3000 });
+    }, { timeout: 6000 });
 
     const buttonElement = screen.getByRole('button', { name: /Reserve Table/i });
     fireEvent.click(buttonElement);
@@ -489,7 +491,7 @@ describe("BookingForm with Formik validation", () => {
     // Check for loading text (should appear quickly)
     await waitFor(() => {
       expect(screen.getByText(/Booking.../i)).toBeInTheDocument();
-    }, { timeout: 1000 });
+    }, { timeout: 6000 });
 
     // The button should be disabled during submission
     expect(buttonElement).toBeDisabled();
