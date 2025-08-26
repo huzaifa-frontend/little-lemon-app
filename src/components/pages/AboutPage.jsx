@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
+import mario from "../../assets/mariorossi.jpeg";
+import elena from "../../assets/elena.avif";
+import antonio from "../../assets/antonio.avif";
 import {
   Box,
   Container,
@@ -387,8 +390,7 @@ const teamMembers = [
     role: "Head Chef & Co-Founder",
     experience:
       "With 20+ years in Mediterranean cuisine, Mario brings authentic flavors from his grandmother's kitchen to yours.",
-    avatar:
-      "https://images.unsplash.com/photo-1583394293214-28ded15ee548?w=150&h=150&fit=crop&crop=face",
+    avatar: mario,
     skills: [
       { name: "Mediterranean Cuisine", level: 95 },
       { name: "Menu Innovation", level: 88 },
@@ -400,8 +402,7 @@ const teamMembers = [
     role: "Executive Sous Chef",
     experience:
       "Elena specializes in traditional Greek and Italian cooking techniques, ensuring every dish meets our exacting standards.",
-    avatar:
-      "https://images.unsplash.com/photo-1727975738173-cf816f48b71e?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    avatar: elena,
     skills: [
       { name: "Traditional Techniques", level: 93 },
       { name: "Quality Control", level: 96 },
@@ -409,12 +410,11 @@ const teamMembers = [
     ],
   },
   {
-    name: "Chef Antonio Torres",
+    name: "Antonio Torres",
     role: "Head Pastry Chef",
     experience:
       "Antonio's exquisite Mediterranean desserts are the perfect finale to any meal, blending classic recipes with modern presentation.",
-    avatar:
-      "https://images.unsplash.com/photo-1689588532679-4bb5fdd8f6d5?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    avatar: antonio,
     skills: [
       { name: "Pastry Arts", level: 94 },
       { name: "Dessert Innovation", level: 91 },
