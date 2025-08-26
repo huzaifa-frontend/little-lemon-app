@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -14,9 +14,10 @@ import {
   useTheme,
   useMediaQuery,
   Fade,
-  Zoom
-} from '@mui/material';
-import { styled } from '@mui/material/styles';
+  Zoom,
+  Badge,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
 import {
   Home as HomeIcon,
   Restaurant as RestaurantIcon,
@@ -25,171 +26,203 @@ import {
   ShoppingBag as ShoppingBagIcon,
   Person as PersonIcon,
   Menu as MenuIcon,
-  Close as CloseIcon
-} from '@mui/icons-material';
+  Close as CloseIcon,
+} from "@mui/icons-material";
+import { useCart } from "./../pages/MenuPage"; // Import the cart hook
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  background: 'linear-gradient(135deg, #495e57 0%, #3a4c47 100%)',
-  position: 'sticky',
+  background: "linear-gradient(135deg, #495e57 0%, #3a4c47 100%)",
+  position: "sticky",
   top: 0,
   zIndex: theme.zIndex.appBar,
-  '&::before': {
+  "&::before": {
     content: '""',
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    background: 'radial-gradient(circle at 30% 70%, rgba(244, 206, 20, 0.1) 0%, transparent 50%)',
-    pointerEvents: 'none',
+    background:
+      "radial-gradient(circle at 30% 70%, rgba(244, 206, 20, 0.1) 0%, transparent 50%)",
+    pointerEvents: "none",
   },
-  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
-  backdropFilter: 'blur(10px)',
+  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
+  backdropFilter: "blur(10px)",
 }));
 
 const NavContainer = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
+  display: "flex",
+  alignItems: "center",
   gap: theme.spacing(8),
-  [theme.breakpoints.down('md')]: {
-    display: 'none',
+  [theme.breakpoints.down("md")]: {
+    display: "none",
   },
 }));
 
 const NavLink = styled(Link)(({ theme, active }) => ({
-  color: 'white',
-  textDecoration: 'none',
+  color: "white",
+  textDecoration: "none",
   fontWeight: 600,
-  fontSize: '18px',
-  display: 'flex',
-  alignItems: 'center',
+  fontSize: "18px",
+  display: "flex",
+  alignItems: "center",
   gap: theme.spacing(1),
   padding: theme.spacing(1, 2),
   borderRadius: theme.spacing(1),
-  position: 'relative',
-  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-  '&::before': {
+  position: "relative",
+  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+  "&::before": {
     content: '""',
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
-    left: '50%',
-    width: active ? '80%' : '0%',
-    height: '2px',
-    background: 'linear-gradient(90deg, #f4ce14, #ffea61)',
-    boxShadow: '0 0 8px rgba(244, 206, 20, 0.6)',
-    transform: 'translateX(-50%)',
-    transition: 'width 0.3s ease',
+    left: "50%",
+    width: active ? "80%" : "0%",
+    height: "2px",
+    background: "linear-gradient(90deg, #f4ce14, #ffea61)",
+    boxShadow: "0 0 8px rgba(244, 206, 20, 0.6)",
+    transform: "translateX(-50%)",
+    transition: "width 0.3s ease",
   },
 
-  '&:hover': {
-    color: '#f4ce14',
-    transform: 'translateY(-2px)',
-    '&::before': {
-      width: '80%',
+  "&:hover": {
+    color: "#f4ce14",
+    transform: "translateY(-2px)",
+    "&::before": {
+      width: "80%",
     },
   },
 }));
 
 const IconContainer = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
+  display: "flex",
+  alignItems: "center",
   gap: theme.spacing(3),
-  marginLeft: 'auto',
+  marginLeft: "auto",
 }));
 
 const IconLink = styled(Link)(({ theme }) => ({
-  color: 'white',
-  textDecoration: 'none',
+  color: "white",
+  textDecoration: "none",
   padding: theme.spacing(1),
-  borderRadius: '50%',
-  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-  position: 'relative',
+  borderRadius: "50%",
+  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+  position: "relative",
 
-  '&:hover': {
-    color: '#f4ce14',
-    transform: 'scale(1.2) rotate(5deg)',
-    background: 'rgba(244, 206, 20, 0.1)',
-    boxShadow: '0 0 15px rgba(244, 206, 20, 0.3)',
+  "&:hover": {
+    color: "#f4ce14",
+    transform: "scale(1.2) rotate(5deg)",
+    background: "rgba(244, 206, 20, 0.1)",
+    boxShadow: "0 0 15px rgba(244, 206, 20, 0.3)",
   },
 }));
 
 const AnimatedMenuIcon = styled(IconButton)(({ open }) => ({
-  color: 'white',
-  transition: 'all 0.3s ease',
-  transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
-  '&:hover': {
-    background: 'rgba(244, 206, 20, 0.1)',
-    transform: open ? 'rotate(180deg) scale(1.1)' : 'rotate(0deg) scale(1.1)',
+  color: "white",
+  transition: "all 0.3s ease",
+  transform: open ? "rotate(180deg)" : "rotate(0deg)",
+  "&:hover": {
+    background: "rgba(244, 206, 20, 0.1)",
+    transform: open ? "rotate(180deg) scale(1.1)" : "rotate(0deg) scale(1.1)",
   },
 }));
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
-  '& .MuiDrawer-paper': {
+  "& .MuiDrawer-paper": {
     width: 280,
-    background: 'linear-gradient(135deg, #495e57 0%, #3a4c47 100%)',
-    '&::before': {
+    background: "linear-gradient(135deg, #495e57 0%, #3a4c47 100%)",
+    "&::before": {
       content: '""',
-      position: 'absolute',
+      position: "absolute",
       top: 0,
       left: 0,
       right: 0,
       bottom: 0,
-      background: 'radial-gradient(circle at 30% 70%, rgba(244, 206, 20, 0.1) 0%, transparent 50%)',
-      pointerEvents: 'none',
+      background:
+        "radial-gradient(circle at 30% 70%, rgba(244, 206, 20, 0.1) 0%, transparent 50%)",
+      pointerEvents: "none",
     },
   },
 }));
 
 const DrawerHeader = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
   padding: theme.spacing(2),
-  borderBottom: '1px solid rgba(244, 206, 20, 0.2)',
+  borderBottom: "1px solid rgba(244, 206, 20, 0.2)",
 }));
 
 const StyledListItem = styled(ListItem)(({ theme, active }) => ({
   margin: theme.spacing(0.5, 1),
   borderRadius: theme.spacing(1),
-  background: active ? 'rgba(244, 206, 20, 0.1)' : 'transparent',
-  border: active ? '1px solid rgba(244, 206, 20, 0.3)' : '1px solid transparent',
-  transition: 'all 0.3s ease',
+  background: active ? "rgba(244, 206, 20, 0.1)" : "transparent",
+  border: active
+    ? "1px solid rgba(244, 206, 20, 0.3)"
+    : "1px solid transparent",
+  transition: "all 0.3s ease",
 
-  '&:hover': {
-    background: 'rgba(244, 206, 20, 0.15)',
-    transform: 'translateX(8px)',
+  "&:hover": {
+    background: "rgba(244, 206, 20, 0.15)",
+    transform: "translateX(8px)",
   },
 
-  '& .MuiListItemIcon-root': {
-    color: active ? '#f4ce14' : 'white',
-    minWidth: '40px',
-    transition: 'color 0.3s ease',
+  "& .MuiListItemIcon-root": {
+    color: active ? "#f4ce14" : "white",
+    minWidth: "40px",
+    transition: "color 0.3s ease",
   },
 
-  '& .MuiListItemText-primary': {
-    color: active ? '#f4ce14' : 'white',
+  "& .MuiListItemText-primary": {
+    color: active ? "#f4ce14" : "white",
     fontWeight: active ? 600 : 500,
-    transition: 'color 0.3s ease',
+    transition: "color 0.3s ease",
+  },
+}));
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    backgroundColor: "#f4ce14",
+    color: "#495e57",
+    fontWeight: "bold",
+    fontSize: "0.75rem",
+    minWidth: "20px",
+    height: "20px",
+    borderRadius: "10px",
+    border: "2px solid white",
+    animation: "pulse 2s infinite",
+  },
+  "@keyframes pulse": {
+    "0%": {
+      transform: "scale(1)",
+      boxShadow: "0 0 0 0 rgba(244, 206, 20, 0.7)",
+    },
+    "70%": {
+      transform: "scale(1.1)",
+      boxShadow: "0 0 0 10px rgba(244, 206, 20, 0)",
+    },
+    "100%": {
+      transform: "scale(1)",
+      boxShadow: "0 0 0 0 rgba(244, 206, 20, 0)",
+    },
   },
 }));
 
 const navItems = [
-  { path: '/', label: 'Home', icon: HomeIcon },
-  { path: '/menu', label: 'Menu', icon: RestaurantIcon },
-  { path: '/about', label: 'About', icon: InfoIcon },
-  { path: '/contact', label: 'Contact', icon: EmailIcon },
-];
-
-const iconItems = [
-  { path: '/cart', icon: ShoppingBagIcon, label: 'Cart' },
-  { path: '/profile', icon: PersonIcon, label: 'Profile' },
+  { path: "/", label: "Home", icon: HomeIcon },
+  { path: "/menu", label: "Menu", icon: RestaurantIcon },
+  { path: "/about", label: "About", icon: InfoIcon },
+  { path: "/contact", label: "Contact", icon: EmailIcon },
 ];
 
 function Nav() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const location = useLocation();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  // Use cart context to get total items
+  const { getTotalItems } = useCart();
+  const totalItems = getTotalItems();
 
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
@@ -203,10 +236,27 @@ function Nav() {
 
   const isActive = (path) => location.pathname === path;
 
+  const iconItems = [
+    {
+      path: "/cart",
+      icon: ShoppingBagIcon,
+      label: "Cart",
+      showBadge: true,
+      badgeCount: totalItems,
+    },
+    { path: "/profile", icon: PersonIcon, label: "Profile" },
+  ];
+
   return (
     <StyledAppBar position="sticky">
       <Container maxWidth="lg">
-        <Toolbar sx={{ justifyContent: 'space-between', position: 'relative', zIndex: 1 }}>
+        <Toolbar
+          sx={{
+            justifyContent: "space-between",
+            position: "relative",
+            zIndex: 1,
+          }}
+        >
           {/* Mobile Menu Button */}
           {isMobile && (
             <AnimatedMenuIcon
@@ -223,7 +273,11 @@ function Nav() {
             {navItems.map((item, index) => {
               const IconComponent = item.icon;
               return (
-                <Zoom in={true} style={{ transitionDelay: `${index * 100}ms` }} key={item.path}>
+                <Zoom
+                  in={true}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                  key={item.path}
+                >
                   <NavLink
                     to={item.path}
                     active={isActive(item.path)}
@@ -242,9 +296,19 @@ function Nav() {
             {iconItems.map((item, index) => {
               const IconComponent = item.icon;
               return (
-                <Zoom in={true} style={{ transitionDelay: `${(index + 4) * 100}ms` }} key={item.path}>
+                <Zoom
+                  in={true}
+                  style={{ transitionDelay: `${(index + 4) * 100}ms` }}
+                  key={item.path}
+                >
                   <IconLink to={item.path} onClick={handleLinkClick}>
-                    <IconComponent sx={{ fontSize: 24 }} />
+                    {item.showBadge && item.badgeCount > 0 ? (
+                      <StyledBadge badgeContent={item.badgeCount} max={99}>
+                        <IconComponent sx={{ fontSize: 24 }} />
+                      </StyledBadge>
+                    ) : (
+                      <IconComponent sx={{ fontSize: 24 }} />
+                    )}
                   </IconLink>
                 </Zoom>
               );
@@ -261,16 +325,20 @@ function Nav() {
             }}
           >
             <DrawerHeader>
-              <IconButton onClick={handleDrawerToggle} sx={{ color: 'white' }}>
+              <IconButton onClick={handleDrawerToggle} sx={{ color: "white" }}>
                 <CloseIcon />
               </IconButton>
             </DrawerHeader>
 
-            <List sx={{ position: 'relative', zIndex: 1 }}>
+            <List sx={{ position: "relative", zIndex: 1 }}>
               {navItems.map((item, index) => {
                 const IconComponent = item.icon;
                 return (
-                  <Fade in={drawerOpen} style={{ transitionDelay: `${index * 100}ms` }} key={item.path}>
+                  <Fade
+                    in={drawerOpen}
+                    style={{ transitionDelay: `${index * 100}ms` }}
+                    key={item.path}
+                  >
                     <StyledListItem
                       component={Link}
                       to={item.path}
@@ -290,7 +358,11 @@ function Nav() {
               {iconItems.map((item, index) => {
                 const IconComponent = item.icon;
                 return (
-                  <Fade in={drawerOpen} style={{ transitionDelay: `${(index + 4) * 100}ms` }} key={item.path}>
+                  <Fade
+                    in={drawerOpen}
+                    style={{ transitionDelay: `${(index + 4) * 100}ms` }}
+                    key={item.path}
+                  >
                     <StyledListItem
                       component={Link}
                       to={item.path}
@@ -298,9 +370,21 @@ function Nav() {
                       active={isActive(item.path)}
                     >
                       <ListItemIcon>
-                        <IconComponent />
+                        {item.showBadge && item.badgeCount > 0 ? (
+                          <StyledBadge badgeContent={item.badgeCount} max={99}>
+                            <IconComponent />
+                          </StyledBadge>
+                        ) : (
+                          <IconComponent />
+                        )}
                       </ListItemIcon>
-                      <ListItemText primary={item.label} />
+                      <ListItemText
+                        primary={`${item.label}${
+                          item.showBadge && item.badgeCount > 0
+                            ? ` (${item.badgeCount})`
+                            : ""
+                        }`}
+                      />
                     </StyledListItem>
                   </Fade>
                 );
