@@ -454,12 +454,21 @@ function ConfirmedBooking() {
             px: { xs: 1, sm: 2, md: 3 },
             position: "relative",
             zIndex: 1,
+            // Ensure consistent padding around 599px breakpoint
+            "@media (min-width: 590px) and (max-width: 610px)": {
+              px: 2,
+            },
           }}
         >
           <Fade in timeout={1000}>
             <Card
               sx={{
-                maxWidth: { xs: "95vw", sm: 500, md: 600 },
+                maxWidth: {
+                  xs: "95vw",
+                  sm: 500,
+                  md: 550, // Gradual increase instead of jump to 600
+                  lg: 600,
+                },
                 width: "100%",
                 borderRadius: { xs: "16px", md: "24px" },
                 background: "rgba(255, 255, 255, 0.95)",
@@ -469,6 +478,11 @@ function ConfirmedBooking() {
                 overflow: "visible",
                 position: "relative",
                 mx: { xs: "auto", md: 0 },
+                // Add specific styles for the problematic 599px area
+                "@media (min-width: 595px) and (max-width: 605px)": {
+                  maxWidth: "520px",
+                  mx: "auto",
+                },
               }}
             >
               {/* Success Icon */}
@@ -514,8 +528,13 @@ function ConfirmedBooking() {
               <CardContent
                 sx={{
                   textAlign: "center",
-                  px: { xs: 2, md: 4 },
-                  pb: { xs: 2, md: 4 },
+                  px: { xs: 2, sm: 3, md: 4 },
+                  pb: { xs: 2, sm: 3, md: 4 },
+                  // Ensure consistent padding around 599px breakpoint
+                  "@media (min-width: 595px) and (max-width: 605px)": {
+                    px: 3,
+                    pb: 3,
+                  },
                 }}
               >
                 {/* Main Heading */}
@@ -659,11 +678,16 @@ function ConfirmedBooking() {
                     <Box
                       sx={{
                         display: "flex",
-                        gap: { xs: 1.5, md: 2 },
+                        gap: { xs: 1.5, sm: 2, md: 2 },
                         justifyContent: "center",
                         flexWrap: "wrap",
                         flexDirection: { xs: "column", sm: "row" },
                         alignItems: "center",
+                        // Ensure consistent layout around 599px breakpoint
+                        "@media (min-width: 595px) and (max-width: 605px)": {
+                          gap: 2,
+                          flexDirection: "row",
+                        },
                       }}
                     >
                       <Button
@@ -676,13 +700,20 @@ function ConfirmedBooking() {
                           backgroundColor: "#495E57",
                           color: "#F4CE14",
                           fontWeight: "bold",
-                          px: { xs: 3, md: 4 },
-                          py: { xs: 1.2, md: 1.5 },
+                          px: { xs: 3, sm: 3.5, md: 4 },
+                          py: { xs: 1.2, sm: 1.35, md: 1.5 },
                           borderRadius: { xs: "8px", md: "12px" },
-                          fontSize: { xs: "0.9rem", md: "1rem" },
+                          fontSize: { xs: "0.9rem", sm: "0.95rem", md: "1rem" },
                           textTransform: "none",
                           boxShadow: "0 8px 24px rgba(73, 94, 87, 0.3)",
                           minWidth: { xs: "200px", sm: "auto" },
+                          // Consistent sizing around 599px breakpoint
+                          "@media (min-width: 595px) and (max-width: 605px)": {
+                            px: 3.5,
+                            py: 1.35,
+                            fontSize: "0.95rem",
+                            minWidth: "auto",
+                          },
                           "&:hover": {
                             backgroundColor: "#364643",
                             transform: "translateY(-2px)",
