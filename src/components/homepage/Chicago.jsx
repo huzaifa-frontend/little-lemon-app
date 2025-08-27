@@ -255,7 +255,7 @@ const FinalQuote = styled(Box)(({ theme }) => ({
     background: "linear-gradient(90deg, #f4ce14 0%, #ffd700 50%, #f4ce14 100%)",
   },
   "&::after": {
-    content: '"❞"',
+    content: '""',
     position: "absolute",
     bottom: "10px",
     right: "20px",
@@ -263,10 +263,32 @@ const FinalQuote = styled(Box)(({ theme }) => ({
     color: "#f4ce14",
     opacity: 0.3,
     fontFamily: "serif",
+    display: "none", // Hide closing quote entirely
   },
   [theme.breakpoints.down("md")]: {
     marginTop: "1.5rem",
     padding: "1.5rem",
+    "&::after": {
+      fontSize: "2rem",
+      bottom: "8px",
+      right: "15px",
+    },
+  },
+  [theme.breakpoints.down("sm")]: {
+    padding: "1.25rem",
+    "&::after": {
+      fontSize: "1.8rem",
+      bottom: "6px",
+      right: "12px",
+      opacity: 0.2,
+    },
+  },
+  // Fix for very small devices (screens smaller than 400px)
+  [`@media (max-width: 400px)`]: {
+    padding: "1rem",
+    "&::after": {
+      display: "none", // Hide closing quote on very small screens
+    },
   },
 }));
 
@@ -280,7 +302,7 @@ const QuoteText = styled(Typography)(({ theme }) => ({
   letterSpacing: "0.5px",
   position: "relative",
   "&::before": {
-    content: '"❝"',
+    content: '""',
     position: "absolute",
     top: "-10px",
     left: "-10px",
@@ -288,9 +310,34 @@ const QuoteText = styled(Typography)(({ theme }) => ({
     color: "#f4ce14",
     opacity: 0.6,
     fontFamily: "serif",
+    display: "none", // Hide opening quote entirely
   },
   [theme.breakpoints.down("md")]: {
     fontSize: "1.1rem",
+    "&::before": {
+      fontSize: "2rem",
+      top: "-8px",
+      left: "-8px",
+    },
+  },
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "1rem",
+    lineHeight: 1.5,
+    "&::before": {
+      fontSize: "1.8rem",
+      top: "-6px",
+      left: "-6px",
+      opacity: 0.4,
+    },
+  },
+  // Fix for very small devices (screens smaller than 400px)
+  [`@media (max-width: 400px)`]: {
+    fontSize: "0.95rem",
+    lineHeight: 1.4,
+    padding: "0 0.5rem", // Add padding to prevent text from touching edges
+    "&::before": {
+      display: "none", // Hide opening quote on very small screens
+    },
   },
 }));
 
