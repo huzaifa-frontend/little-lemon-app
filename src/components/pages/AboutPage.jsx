@@ -70,79 +70,7 @@ const shimmer = keyframes`
   100% { background-position: calc(200px + 100%) 0; }
 `;
 
-// Pattern animation for hero background
-const patternMove = keyframes`
-  0% { transform: translate(0, 0) rotate(0deg); }
-  33% { transform: translate(30px, -30px) rotate(120deg); }
-  66% { transform: translate(-20px, 20px) rotate(240deg); }
-  100% { transform: translate(0, 0) rotate(360deg); }
-`;
-
 // Styled Components
-const HeroSection = styled(Box)(({ theme }) => ({
-  background: "linear-gradient(135deg, #495e57 0%, #3a4c47 100%)",
-  position: "relative",
-  overflow: "hidden",
-  minHeight: "60vh",
-  display: "flex",
-  alignItems: "center",
-  "&::before": {
-    content: '""',
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundImage: `
-      radial-gradient(circle at 25% 25%, rgba(244, 206, 20, 0.1) 0%, transparent 25%),
-      radial-gradient(circle at 75% 75%, rgba(244, 206, 20, 0.08) 0%, transparent 25%),
-      radial-gradient(circle at 75% 25%, rgba(255, 255, 255, 0.05) 0%, transparent 25%),
-      radial-gradient(circle at 25% 75%, rgba(255, 255, 255, 0.03) 0%, transparent 25%)
-    `,
-    animation: `${patternMove} 20s ease-in-out infinite`,
-    pointerEvents: "none",
-  },
-  "&::after": {
-    content: '""',
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: "2px",
-    background: "linear-gradient(90deg, transparent, #f4ce14, transparent)",
-  },
-}));
-
-const HeroContent = styled(Box)(({ theme }) => ({
-  position: "relative",
-  zIndex: 2,
-  textAlign: "center",
-  color: "white",
-}));
-
-const HeroTitle = styled(Typography)(({ theme }) => ({
-  fontSize: "3.5rem",
-  fontWeight: 700,
-  marginBottom: "1rem",
-  textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
-  animation: `${fadeInUp} 1s ease-out`,
-  [theme.breakpoints.down("md")]: {
-    fontSize: "2.5rem",
-  },
-}));
-
-const HeroSubtitle = styled(Typography)(({ theme }) => ({
-  fontSize: "1.3rem",
-  opacity: 0.9,
-  maxWidth: "600px",
-  margin: "0 auto",
-  lineHeight: 1.6,
-  animation: `${fadeInUp} 1s ease-out 0.3s both`,
-  [theme.breakpoints.down("md")]: {
-    fontSize: "1.1rem",
-  },
-}));
-
 const ContentSection = styled(Box)(({ theme }) => ({
   padding: "4rem 0",
   position: "relative",
@@ -325,27 +253,6 @@ const AnimatedIcon = styled(Box)(({ theme }) => ({
   "& svg": {
     fontSize: "2rem",
     color: "#f4ce14",
-  },
-}));
-
-const FloatingElement = styled(Box)(({ theme }) => ({
-  position: "absolute",
-  width: "60px",
-  height: "60px",
-  borderRadius: "50%",
-  background: "rgba(255, 255, 255, 0.05)",
-  animation: `${floatAnimation} 8s ease-in-out infinite`,
-  pointerEvents: "none",
-  "&::before": {
-    content: '""',
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    width: "60%",
-    height: "60%",
-    transform: "translate(-50%, -50%)",
-    borderRadius: "50%",
-    background: "rgba(255, 255, 255, 0.1)",
   },
 }));
 
@@ -553,34 +460,18 @@ function AboutPage() {
   };
 
   return (
-    <Box component="main" sx={{ overflow: "hidden" }}>
+    <div className="about-page full-width-page">
       {/* Hero Section */}
-      <HeroSection>
-        <FloatingElement
-          sx={{
-            top: "10%",
-            right: "10%",
-            animationDelay: "0s",
-          }}
-        />
-        <FloatingElement
-          sx={{
-            bottom: "20%",
-            left: "15%",
-            animationDelay: "4s",
-          }}
-        />
-
-        <Container maxWidth="lg">
-          <HeroContent>
-            <HeroTitle variant="h1">Taste the Mediterranean Heritage</HeroTitle>
-            <HeroSubtitle variant="h5">
-              Discover the authentic flavors and rich traditions that have been
-              lovingly preserved through generations of culinary artistry.
-            </HeroSubtitle>
-          </HeroContent>
-        </Container>
-      </HeroSection>
+      <div className="hero-section">
+        <div className="hero-background"></div>
+        <div className="hero-content">
+          <h1 className="hero-title">Taste the Mediterranean Heritage</h1>
+          <p className="hero-subtitle">
+            Discover the authentic flavors and rich traditions that have been
+            lovingly preserved through generations of culinary artistry.
+          </p>
+        </div>
+      </div>
 
       {/* Values Section */}
       <ContentSection>
@@ -818,10 +709,15 @@ function AboutPage() {
 
       {/* Call to Action */}
       <ContentSection
+        className="cta-section"
         sx={{
           background: "linear-gradient(135deg, #495e57 0%, #3a4c47 100%)",
           color: "white",
           position: "relative",
+          minHeight: "40vh",
+          display: "flex",
+          alignItems: "center",
+          padding: "2rem 0",
           "&::before": {
             content: '""',
             position: "absolute",
@@ -839,6 +735,7 @@ function AboutPage() {
           <Box textAlign="center">
             <Typography
               variant="h3"
+              className="cta-title"
               sx={{
                 fontWeight: 700,
                 mb: 3,
@@ -849,6 +746,7 @@ function AboutPage() {
             </Typography>
             <Typography
               variant="h6"
+              className="cta-subtitle"
               sx={{
                 opacity: 0.9,
                 mb: 4,
@@ -864,6 +762,7 @@ function AboutPage() {
             <Grid
               container
               spacing={3}
+              className="cta-grid"
               sx={{
                 maxWidth: "800px",
                 mx: "auto",
@@ -885,7 +784,10 @@ function AboutPage() {
                     timeout={1000}
                     style={{ transitionDelay: `${index * 200}ms` }}
                   >
-                    <PulsingCard style={{ animationDelay: feature.delay }}>
+                    <PulsingCard
+                      className="cta-card"
+                      style={{ animationDelay: feature.delay }}
+                    >
                       <AnimatedIcon className="icon">
                         {feature.icon}
                       </AnimatedIcon>
@@ -919,7 +821,287 @@ function AboutPage() {
           </Box>
         </Container>
       </ContentSection>
-    </Box>
+
+      <style jsx>{`
+        .about-page {
+          overflow: hidden;
+          overflow-x: hidden;
+          width: 100%;
+          max-width: 100vw;
+          box-sizing: border-box;
+        }
+
+        .hero-section {
+          background: linear-gradient(135deg, #495e57 0%, #3a4c47 100%);
+          position: relative;
+          overflow: hidden;
+          min-height: 40vh;
+          display: flex;
+          align-items: center;
+          color: white;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+        }
+
+        @media (max-width: 480px) {
+          .hero-section {
+            min-height: 35vh;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .hero-section {
+            min-height: 30vh;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            position: relative;
+            left: 0;
+            right: 0;
+          }
+        }
+
+        .hero-background {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: radial-gradient(
+              circle at 25% 25%,
+              rgba(244, 206, 20, 0.1) 0%,
+              transparent 25%
+            ),
+            radial-gradient(
+              circle at 75% 75%,
+              rgba(244, 206, 20, 0.08) 0%,
+              transparent 25%
+            );
+          pointer-events: none;
+          width: 100%;
+        }
+
+        @media (max-width: 400px) {
+          .hero-background {
+            width: 100vw;
+            left: 0;
+            right: 0;
+          }
+        }
+
+        .hero-content {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+          text-align: center;
+          position: relative;
+          z-index: 2;
+        }
+
+        @media (max-width: 480px) {
+          .hero-content {
+            padding: 2rem 15px;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .hero-content {
+            padding: 0 10px;
+          }
+        }
+
+        .hero-title {
+          font-size: 3rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+          animation: fadeInUp 1s ease-out;
+        }
+
+        @media (max-width: 768px) {
+          .hero-title {
+            font-size: 2.5rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            margin-top: 1rem;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .hero-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+          }
+        }
+
+        .hero-subtitle {
+          font-size: 1.3rem;
+          opacity: 0.9;
+          max-width: 600px;
+          margin: 0 auto;
+          animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @media (max-width: 768px) {
+          .hero-subtitle {
+            font-size: 1.2rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .hero-subtitle {
+            font-size: 1rem;
+            padding: 0 10px;
+          }
+        }
+
+        @keyframes fadeInUp {
+          0% {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .hero-title {
+            font-size: 2.5rem;
+          }
+
+          .hero-subtitle {
+            font-size: 1.1rem;
+          }
+        }
+
+        /* CTA section typography to match hero section */
+        .cta-title {
+          font-size: 3rem !important;
+          font-weight: 700 !important;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .cta-subtitle {
+          font-size: 1.3rem !important;
+          opacity: 0.9 !important;
+          line-height: 1.6 !important;
+        }
+
+        /* Responsive CTA section */
+        @media (max-width: 768px) {
+          .cta-title {
+            font-size: 2.5rem !important;
+          }
+
+          .cta-subtitle {
+            font-size: 1.2rem !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .cta-title {
+            font-size: 2rem !important;
+          }
+
+          .cta-subtitle {
+            font-size: 1.1rem !important;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .cta-title {
+            font-size: 1.8rem !important;
+            margin-bottom: 0.5rem !important;
+          }
+
+          .cta-subtitle {
+            font-size: 1rem !important;
+            padding: 0 10px !important;
+          }
+        }
+
+        /* Mobile styles for Call to Action section */
+        @media (max-width: 768px) {
+          .cta-section {
+            min-height: 35vh !important;
+            padding: 3rem 0 1.5rem 0 !important;
+          }
+
+          .cta-grid {
+            gap: 1rem !important;
+          }
+
+          .cta-card {
+            padding: 1rem !important;
+          }
+
+          .cta-card .icon {
+            width: 50px !important;
+            height: 50px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .cta-section {
+            min-height: 30vh !important;
+            padding: 2.5rem 0 1rem 0 !important;
+          }
+
+          .cta-card {
+            padding: 0.8rem !important;
+          }
+
+          .cta-card .icon {
+            width: 45px !important;
+            height: 45px !important;
+          }
+        }
+
+        /* Very small devices responsive fixes */
+        @media (max-width: 400px) {
+          .cta-section {
+            min-height: 25vh !important;
+            padding: 2rem 0 0.5rem 0 !important;
+            width: 100vw !important;
+            margin-left: calc(-50vw + 50%) !important;
+            position: relative !important;
+            left: 0 !important;
+            right: 0 !important;
+          }
+
+          .cta-card {
+            padding: 0.6rem !important;
+            margin: 0 auto !important;
+            max-width: calc(100vw - 40px) !important;
+          }
+
+          .cta-card .icon {
+            width: 40px !important;
+            height: 40px !important;
+          }
+
+          .cta-grid {
+            gap: 0.5rem !important;
+            padding: 0 10px !important;
+          }
+        }
+      `}</style>
+    </div>
   );
 }
 
