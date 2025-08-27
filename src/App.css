@@ -131,6 +131,21 @@ main {
   justify-items: center;
 }
 
+/* Fix for centering single item on second row between 1239px and 957px */
+@media (min-width: 957px) and (max-width: 1239px) {
+  .testimonial-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 2rem;
+  }
+
+  .testimonial-card {
+    flex: 0 0 300px;
+  }
+}
+
 .testimonial-card {
   background: white;
   border-radius: 1rem;
@@ -223,5 +238,121 @@ main {
     font-size: 0.9rem;
     line-height: 1.4;
     margin-bottom: 0.5rem;
+  }
+}
+
+/* === Extra Small Devices === */
+@media (max-width: 400px) {
+  /* Chicago section improvements for very small devices */
+  main {
+    padding: 0 10px;
+  }
+
+  /* Override main padding completely for menu page */
+  main:has(.menu-page) {
+    padding: 0 !important;
+  }
+
+  /* Fallback for browsers that don't support :has() */
+  .menu-page {
+    margin-left: -10px !important;
+    margin-right: -10px !important;
+  }
+
+  /* Ensure text content has proper spacing and doesn't overflow */
+  .MuiContainer-root {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  /* Override Material-UI grid spacing on very small screens */
+  .MuiGrid-container {
+    margin: 0 !important;
+  }
+
+  .MuiGrid-item {
+    padding: 4px !important;
+  }
+
+  /* Menu Page and About Page specific fixes for very small devices */
+  .menu-page,
+  .about-page {
+    overflow-x: hidden !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Prevent horizontal scroll on page items */
+  .menu-page *,
+  .about-page * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Ensure hero section doesn't overflow and covers full width */
+  .hero-section {
+    min-height: 35vh !important;
+    width: 100vw !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+  }
+
+  /* Ensure main container doesn't interfere with full-width components */
+  main:has(.full-width-page) {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Full width page specific styling */
+  .full-width-page {
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    width: 100vw !important;
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  /* Alternative approach if :has() is not supported */
+  .menu-page.full-width-page,
+  .about-page.full-width-page {
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    width: 100vw !important;
+    position: relative !important;
+  }
+
+  /* Override any body padding that might cause issues */
+  body {
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow-x: hidden !important;
+    width: 100vw !important;
+  }
+
+  /* Fix category tabs overflow and clipping */
+  .category-tabs {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    padding-top: 1.5rem !important;
+    margin-top: 1rem !important;
+  }
+
+  .category-tabs::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Ensure tab buttons have proper clearance */
+  .tab-button {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
   }
 }
