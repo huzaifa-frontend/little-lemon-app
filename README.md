@@ -1,15 +1,18 @@
 # 🍋 Little Lemon Restaurant App
 
-![React](https://img.shields.io/badge/React-18.0-blue?logo=react)
-![Material UI](https://img.shields.io/badge/Material--UI-5.0-007FFF?logo=mui)
-![React Router](https://img.shields.io/badge/React%20Router-6.0-CA4245?logo=react-router)
-![Formik](https://img.shields.io/badge/Formik-2.2-purple?logo=formik)
-![Yup](https://img.shields.io/badge/Yup-Validation-green)
-![Testing Library](https://img.shields.io/badge/Testing%20Library-React-E33332?logo=testing-library)
-![Jest](https://img.shields.io/badge/Jest-Testing-red?logo=jest)
-![Web Vitals](https://img.shields.io/badge/Web%20Vitals-Performance-0A0A0A)
-![CRA](https://img.shields.io/badge/Create%20React%20App-4.0-09D3AC?logo=create)
-
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Material UI](https://img.shields.io/badge/Material--UI-007FFF?style=for-the-badge&logo=mui&logoColor=white)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![Formik](https://img.shields.io/badge/Formik-2.2-purple?style=for-the-badge&logo=formik&logoColor=white)
+![Yup](https://img.shields.io/badge/Yup-Validation-28A745?style=for-the-badge)
+![Jest](https://img.shields.io/badge/Jest-Testing-C21325?style=for-the-badge&logo=jest&logoColor=white)
+![React Testing Library](https://img.shields.io/badge/Testing_Library-React-E33332?style=for-the-badge&logo=testing-library&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![MIT License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Project Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
 
 🌐 **Live Demo:** [Click here to visitsite](https://huzaifa-frontend.github.io/little-lemon-app/)
 
@@ -81,9 +84,9 @@ This project demonstrates **production-ready standards**, including responsivene
 - [**React Context API**](https://react.dev/reference/react/useContext?utm_source=chatgpt.com) — State management  
 - [**Jest**](https://jestjs.io/) + [**React Testing Library**](https://testing-library.com/docs/react-testing-library/intro) — Testing  
 - [**Vercel**](https://vercel.com/) — Deployment platform  
-- [**JavaScript (ES6+)**](https://developer.mozilla.org/en-US/docs/Web/JavaScript)  
-- [**CSS3**](https://developer.mozilla.org/en-US/docs/Web/CSS)  
-- [**HTML5**](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [**JavaScript (ES6+)**](https://developer.mozilla.org/en-US/docs/Web/JavaScript) — Modern programming language for web development  
+- [**CSS3**](https://developer.mozilla.org/en-US/docs/Web/CSS) — Styling language for designing web pages  
+- [**HTML5**](https://developer.mozilla.org/en-US/docs/Web/HTML) — Markup language for structuring web content  
 
 ---
 
@@ -92,25 +95,25 @@ This project demonstrates **production-ready standards**, including responsivene
 1. **Clone the repository:**
 
 ``` bash
-    git clone https://github.com/huzaifakarim1/little-lemon-app.git
+git clone https://github.com/huzaifakarim1/little-lemon-app.git
 ```
 
 2. **Navigate to the project folder:**
 
 ``` bash
-    cd little-lemon-app
+cd little-lemon-app
 ```
 
 3.  **Install dependencies:**
 
 ``` bash
-    npm install
+npm install
 ```
 
 4.  **Run the development server:**
 
 ``` bash
-    npm start
+npm start
 ```
 
 5. **Open in browser:**
@@ -120,7 +123,7 @@ Visit `http://localhost:3000`
 6.  **Build for production:**
 
 ``` bash
-    npm run build
+npm run build
 ```
 
 ---
@@ -128,15 +131,24 @@ Visit `http://localhost:3000`
 ## 📸 Screenshots
 
 - 🏠 **Homepage**  
+![Homepage](public/assets/screenshots/homepage.png)
+
 - 📋 **Menu Page**  
+![Menu Page](public/assets/screenshots/menu.png)
+
 - 📅 **Booking Page**  
+![Booking Page](public/assets/screenshots/booking.png)
+
 - 📞 **Contact Page**  
+![Contact Page](public/assets/screenshots/contact.png)
 
 ---
 
 ## 🎥 Demo GIF
 
-*(Add demo GIF showcasing app flow here)*  
+![Demo GIF](assets/gif/demo.gif)
+
+*(This GIF showcases the app flow, interactions, and animations.)*
 
 ---
 
