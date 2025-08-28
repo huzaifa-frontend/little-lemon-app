@@ -75,6 +75,7 @@ const StyledCard = styled(Card)({
   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
   position: "relative",
   overflow: "hidden",
+  WebkitTapHighlightColor: "transparent",
   "&:hover": {
     transform: "translateY(-4px)",
     boxShadow: "0 16px 40px rgba(0, 0, 0, 0.15)",
@@ -159,6 +160,7 @@ const SubmitButton = styled(Button)({
   textTransform: "none",
   boxShadow: "0 8px 24px rgba(244, 206, 20, 0.3)",
   transition: "all 0.3s ease",
+  WebkitTapHighlightColor: "transparent",
   "&:hover": {
     background: "linear-gradient(135deg, #e6b800 0%, #d4a900 100%)",
     transform: "translateY(-2px)",
@@ -445,7 +447,17 @@ function ContactPage() {
                 </IconWrapper>
                 <Typography
                   variant="h5"
-                  sx={{ fontWeight: 600, mb: 1, color: "#495e57" }}
+                  sx={{
+                    fontWeight: 600,
+                    mb: 1,
+                    color: "#495e57",
+                    fontSize: {
+                      xs: "1.25rem", // Mobile: 20px
+                      sm: "1.35rem", // Small: 21.6px
+                      md: "1.45rem", // Medium: 23.2px
+                      lg: "1.5rem", // Large: 24px (default h5)
+                    },
+                  }}
                 >
                   {info.title}
                 </Typography>
@@ -456,6 +468,12 @@ function ContactPage() {
                     fontWeight: 700,
                     mb: 1,
                     textShadow: "1px 1px 2px rgba(0,0,0,0.1)",
+                    fontSize: {
+                      xs: "1rem", // Mobile: 16px
+                      sm: "1.1rem", // Small: 17.6px
+                      md: "1.2rem", // Medium: 19.2px
+                      lg: "1.25rem", // Large: 20px (default h6)
+                    },
                   }}
                 >
                   {info.value}
@@ -498,6 +516,12 @@ function ContactPage() {
                 fontWeight: 700,
                 color: "#495e57",
                 mb: 2,
+                fontSize: {
+                  xs: "2rem", // Mobile: 32px
+                  sm: "2.25rem", // Small: 36px
+                  md: "2.5rem", // Medium: 40px
+                  lg: "3rem", // Large: 48px (default h3)
+                },
                 animation: `${fadeInUp} 0.8s ease-out`,
               }}
             >
@@ -509,6 +533,12 @@ function ContactPage() {
                 color: "#666",
                 maxWidth: "600px",
                 mx: "auto",
+                fontSize: {
+                  xs: "1rem", // Mobile: 16px
+                  sm: "1.1rem", // Small: 17.6px
+                  md: "1.2rem", // Medium: 19.2px
+                  lg: "1.25rem", // Large: 20px (default h6)
+                },
                 animation: `${fadeInUp} 0.8s ease-out 0.2s both`,
               }}
             >
@@ -534,6 +564,12 @@ function ContactPage() {
                 fontWeight: 700,
                 color: "#495e57",
                 mb: 2,
+                fontSize: {
+                  xs: "2rem", // Mobile: 32px
+                  sm: "2.25rem", // Small: 36px
+                  md: "2.5rem", // Medium: 40px
+                  lg: "3rem", // Large: 48px (default h3)
+                },
                 animation: `${fadeInUp} 0.8s ease-out`,
               }}
             >
@@ -545,6 +581,12 @@ function ContactPage() {
                 color: "#666",
                 maxWidth: "600px",
                 mx: "auto",
+                fontSize: {
+                  xs: "1rem", // Mobile: 16px
+                  sm: "1.1rem", // Small: 17.6px
+                  md: "1.2rem", // Medium: 19.2px
+                  lg: "1.25rem", // Large: 20px (default h6)
+                },
                 animation: `${fadeInUp} 0.8s ease-out 0.2s both`,
               }}
             >
@@ -581,7 +623,12 @@ function ContactPage() {
                           fontWeight: 700,
                           color: "#495e57",
                           mb: 2,
-                          fontSize: { xs: "1.5rem", md: "1.75rem" },
+                          fontSize: {
+                            xs: "1.25rem", // Mobile: 20px
+                            sm: "1.35rem", // Small: 21.6px
+                            md: "1.45rem", // Medium: 23.2px
+                            lg: "1.5rem", // Large: 24px
+                          },
                         }}
                       >
                         Send Us a Message
@@ -591,7 +638,12 @@ function ContactPage() {
                         sx={{
                           color: "#666",
                           lineHeight: 1.6,
-                          fontSize: "0.9rem",
+                          fontSize: {
+                            xs: "0.85rem", // Mobile: 13.6px
+                            sm: "0.9rem", // Small: 14.4px
+                            md: "0.95rem", // Medium: 15.2px
+                            lg: "1rem", // Large: 16px
+                          },
                         }}
                       >
                         Fill out the form below and we'll get back to you as
@@ -859,7 +911,12 @@ function ContactPage() {
                         sx={{
                           fontWeight: 700,
                           color: "#495e57",
-                          fontSize: { xs: "1.5rem", md: "1.75rem" },
+                          fontSize: {
+                            xs: "1.25rem", // Mobile: 20px
+                            sm: "1.35rem", // Small: 21.6px
+                            md: "1.45rem", // Medium: 23.2px
+                            lg: "1.5rem", // Large: 24px
+                          },
                         }}
                       >
                         Operating Hours
@@ -899,6 +956,12 @@ function ContactPage() {
                 fontWeight: 700,
                 color: "#495e57",
                 mb: 2,
+                fontSize: {
+                  xs: "2rem", // Mobile: 32px
+                  sm: "2.25rem", // Small: 36px
+                  md: "2.5rem", // Medium: 40px
+                  lg: "3rem", // Large: 48px (default h3)
+                },
               }}
             >
               Find Us
@@ -909,6 +972,12 @@ function ContactPage() {
                 color: "#666",
                 maxWidth: "600px",
                 mx: "auto",
+                fontSize: {
+                  xs: "1rem", // Mobile: 16px
+                  sm: "1.1rem", // Small: 17.6px
+                  md: "1.2rem", // Medium: 19.2px
+                  lg: "1.25rem", // Large: 20px (default h6)
+                },
               }}
             >
               Located in the heart of downtown Chicago
