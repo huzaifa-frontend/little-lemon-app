@@ -899,22 +899,33 @@ function ProfilePage() {
   // Handle password change
   const handlePasswordChange = useCallback(
     async (e) => {
-      e.preventDefault();
+      if (e && e.preventDefault) {
+        e.preventDefault();
+      }
+      if (e && e.stopPropagation) {
+        e.stopPropagation();
+      }
 
       const newErrors = {};
 
-      // Validate current password
-      if (passwordForm.currentPassword !== currentUser.password) {
+      // Validate current password is provided
+      if (!passwordForm.currentPassword) {
+        newErrors.currentPassword = "Current password is required";
+      } else if (passwordForm.currentPassword !== currentUser.password) {
         newErrors.currentPassword = "Current password is incorrect";
       }
 
       // Validate new password
-      if (!validatePassword(passwordForm.newPassword)) {
+      if (!passwordForm.newPassword) {
+        newErrors.newPassword = "New password is required";
+      } else if (!validatePassword(passwordForm.newPassword)) {
         newErrors.newPassword = "Password must be at least 6 characters";
       }
 
       // Validate password confirmation
-      if (passwordForm.newPassword !== passwordForm.confirmNewPassword) {
+      if (!passwordForm.confirmNewPassword) {
+        newErrors.confirmNewPassword = "Please confirm your new password";
+      } else if (passwordForm.newPassword !== passwordForm.confirmNewPassword) {
         newErrors.confirmNewPassword = "Passwords do not match";
       }
 
@@ -936,39 +947,70 @@ function ProfilePage() {
           password: passwordForm.newPassword,
         };
 
-        // Update in users array
+        // Update in users array using email for identification
         const existingUsers = JSON.parse(
           window.localStorage?.getItem("littleLemonUsers") || "[]"
         );
-        const updatedUsers = existingUsers.map((u) =>
-          u.id === currentUser.id ? updatedUser : u
-        );
-        window.localStorage?.setItem(
-          "littleLemonUsers",
-          JSON.stringify(updatedUsers)
+
+        console.log("Before update - Current user:", currentUser.email);
+        console.log(
+          "Before update - Existing users:",
+          existingUsers.map((u) => u.email)
         );
 
-        // Update current user
-        setCurrentUser(updatedUser);
-        window.localStorage?.setItem(
-          "littleLemonUser",
-          JSON.stringify(updatedUser)
-        );
-
-        setSnackbar({
-          open: true,
-          message: "Password changed successfully!",
-          severity: "success",
+        const updatedUsers = existingUsers.map((u) => {
+          if (u.email.toLowerCase() === currentUser.email.toLowerCase()) {
+            console.log("Found matching user, updating password");
+            return { ...u, password: passwordForm.newPassword };
+          }
+          return u;
         });
 
-        // Reset password form and hide it
-        setPasswordForm({
-          currentPassword: "",
-          newPassword: "",
-          confirmNewPassword: "",
-        });
-        setShowChangePassword(false);
+        // Verify the update was successful
+        const updatedUser_verify = updatedUsers.find(
+          (u) => u.email.toLowerCase() === currentUser.email.toLowerCase()
+        );
+
+        console.log("After update - Updated user:", updatedUser_verify);
+
+        if (
+          updatedUser_verify &&
+          updatedUser_verify.password === passwordForm.newPassword
+        ) {
+          // Save to localStorage
+          window.localStorage?.setItem(
+            "littleLemonUsers",
+            JSON.stringify(updatedUsers)
+          );
+
+          // Update current user
+          setCurrentUser(updatedUser);
+          window.localStorage?.setItem(
+            "littleLemonUser",
+            JSON.stringify(updatedUser)
+          );
+
+          // Show success message using snackbar
+          setSnackbar({
+            open: true,
+            message: "Password changed successfully!",
+            severity: "success",
+          });
+
+          // Reset password form and hide it
+          setPasswordForm({
+            currentPassword: "",
+            newPassword: "",
+            confirmNewPassword: "",
+          });
+          setShowChangePassword(false);
+
+          console.log("Password change completed successfully");
+        } else {
+          throw new Error("Failed to verify password update");
+        }
       } catch (error) {
+        console.error("Password change error:", error);
         setSnackbar({
           open: true,
           message: "Password change failed. Please try again.",
@@ -1002,6 +1044,16 @@ function ProfilePage() {
     });
     window.localStorage?.removeItem("littleLemonUser");
 
+    // Reset to login mode instead of staying in signup
+    setAuthMode("login");
+
+    // Scroll to top after logout
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+
     setSnackbar({
       open: true,
       message: "You have been logged out successfully.",
@@ -1021,7 +1073,7 @@ function ProfilePage() {
       JSON.stringify(updatedUsers)
     );
 
-    // Logout
+    // Logout (which includes scroll to top and reset to login mode)
     handleLogout();
     setShowDeleteDialog(false);
 
@@ -1700,13 +1752,13 @@ function ProfilePage() {
       </div>
 
       {/* Profile Content */}
-      <Container maxWidth="lg" sx={{ py: 6 }}>
-        <Grid container spacing={4}>
+      <Container maxWidth="xl" sx={{ py: 6 }}>
+        <Grid container spacing={4} sx={{ justifyContent: "center" }}>
           {/* User Stats */}
           <Grid item xs={12}>
             <Fade in timeout={800}>
-              <ProfileCard>
-                <CardContent sx={{ p: 3 }}>
+              <ProfileCard sx={{ mx: "auto", maxWidth: 1200 }}>
+                <CardContent sx={{ p: 4, px: 6 }}>
                   <Typography
                     variant="h5"
                     sx={{
@@ -1718,7 +1770,7 @@ function ProfilePage() {
                   >
                     Your Little Lemon Journey
                   </Typography>
-                  <Grid container spacing={3}>
+                  <Grid container spacing={3} sx={{ justifyContent: "center" }}>
                     <Grid item xs={12} sm={6} md={2.4}>
                       <StatCard>
                         <Restaurant
@@ -1919,7 +1971,7 @@ function ProfilePage() {
                         />
                       </Grid>
 
-                      <Grid item xs={12}>
+                      <Grid item xs={12} sm={6}>
                         <StyledTextField
                           fullWidth
                           label="Email Address"
@@ -1943,7 +1995,7 @@ function ProfilePage() {
                         />
                       </Grid>
 
-                      <Grid item xs={12}>
+                      <Grid item xs={12} sm={6}>
                         <StyledFormControl
                           fullWidth
                           error={!!errors.gender}
@@ -1977,7 +2029,7 @@ function ProfilePage() {
                         </StyledFormControl>
                       </Grid>
 
-                      <Grid item xs={12}>
+                      <Grid item xs={12} sm={6}>
                         <StyledTextField
                           fullWidth
                           label="Phone Number"
@@ -2000,7 +2052,7 @@ function ProfilePage() {
                         />
                       </Grid>
 
-                      <Grid item xs={12}>
+                      <Grid item xs={12} sm={6}>
                         <StyledTextField
                           fullWidth
                           label="Address"
@@ -2026,8 +2078,6 @@ function ProfilePage() {
                         <Box sx={{ mt: 2 }}>
                           {showChangePassword && (
                             <Box
-                              component="form"
-                              onSubmit={handlePasswordChange}
                               sx={{
                                 mt: 3,
                                 p: 3,
@@ -2145,7 +2195,11 @@ function ProfilePage() {
                                       Cancel
                                     </Button>
                                     <ActionButton
-                                      type="submit"
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        handlePasswordChange(e);
+                                      }}
                                       variant="primary"
                                       disabled={isSubmitting}
                                       startIcon={<Save />}
