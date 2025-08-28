@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useCart } from "./MenuPage";
 import { useNavigate } from "react-router-dom";
+import { Fade, Slide, Zoom } from "@mui/material";
 
 export default function CartPage({ onBackToMenu, onClose }) {
   const {
@@ -23,6 +24,7 @@ export default function CartPage({ onBackToMenu, onClose }) {
   const [showToast, setShowToast] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [isPageFadingIn, setIsPageFadingIn] = useState(false);
+  const [animationStep, setAnimationStep] = useState(0);
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -99,6 +101,13 @@ export default function CartPage({ onBackToMenu, onClose }) {
     setShowToast(true);
     setIsCheckingOut(false);
 
+    // Staggered animation sequence like ConfirmedBooking
+    const timeouts = [
+      setTimeout(() => setAnimationStep(1), 300),
+      setTimeout(() => setAnimationStep(2), 600),
+      setTimeout(() => setAnimationStep(3), 900),
+    ];
+
     // Clear cart after showing success message
     setTimeout(() => {
       clearCart();
@@ -127,6 +136,7 @@ export default function CartPage({ onBackToMenu, onClose }) {
       setOrderItems([]);
       setIsFadingOut(false);
       setIsPageFadingIn(true);
+      setAnimationStep(0); // Reset animation step
 
       // Remove fade-in class after animation and clear transitioning
       setTimeout(() => {
@@ -142,6 +152,8 @@ export default function CartPage({ onBackToMenu, onClose }) {
 
     // Wait for fade-out animation to complete, then navigate immediately
     setTimeout(() => {
+      // Reset animation step before navigation
+      setAnimationStep(0);
       // Navigate immediately without clearing states first
       navigate("/menu");
     }, 500);
@@ -209,41 +221,55 @@ export default function CartPage({ onBackToMenu, onClose }) {
         }`}
       >
         <FloatingParticles />
-        <div className={`order-success ${isFadingOut ? "fade-out" : ""}`}>
-          <button
-            onClick={handleCloseSuccessMessage}
-            className="close-success-btn"
-            aria-label="Close"
-            disabled={isFadingOut}
-          >
-            ×
-          </button>
-
-          <div className="success-animation">
-            <div className="checkmark">✓</div>
-          </div>
-          <h2>Order Placed Successfully!</h2>
-          <p>
-            Thank you for your order! Your delicious meal is being prepared with
-            love and will be ready soon.
-          </p>
-          <div className="order-total">
-            Total Paid: <strong>${formatPrice(orderTotal)}</strong>
-          </div>
-
-          <div className="success-actions">
-            <button onClick={handlePrint} className="print-btn">
-              Print Receipt
-            </button>
+        <Fade in timeout={1000}>
+          <div className={`order-success ${isFadingOut ? "fade-out" : ""}`}>
             <button
-              onClick={handleBrowseMoreItems}
-              className="continue-btn"
+              onClick={handleCloseSuccessMessage}
+              className="close-success-btn"
+              aria-label="Close"
               disabled={isFadingOut}
             >
-              Browse More Items
+              ×
             </button>
+
+            <div className="success-animation">
+              <Zoom in={animationStep >= 1} timeout={800}>
+                <div className="checkmark">✓</div>
+              </Zoom>
+            </div>
+
+            <Slide direction="down" in={animationStep >= 2} timeout={600}>
+              <div>
+                <h2>Order Placed Successfully!</h2>
+                <p>
+                  Thank you for your order! Your delicious meal is being
+                  prepared with love and will be ready soon.
+                </p>
+              </div>
+            </Slide>
+
+            <Fade in={animationStep >= 3} timeout={800}>
+              <div className="order-total">
+                Total Paid: <strong>${formatPrice(orderTotal)}</strong>
+              </div>
+            </Fade>
+
+            <Slide direction="up" in={animationStep >= 3} timeout={800}>
+              <div className="success-actions">
+                <button onClick={handlePrint} className="print-btn">
+                  Print Receipt
+                </button>
+                <button
+                  onClick={handleBrowseMoreItems}
+                  className="continue-btn"
+                  disabled={isFadingOut}
+                >
+                  Browse More Items
+                </button>
+              </div>
+            </Slide>
           </div>
-        </div>
+        </Fade>
 
         {showToast &&
           ReactDOM.createPortal(
@@ -574,7 +600,20 @@ export default function CartPage({ onBackToMenu, onClose }) {
             font-size: 2rem;
             font-weight: bold;
             margin: 0 auto;
+            box-shadow: 0 8px 24px rgba(76, 175, 80, 0.3);
             animation: pulse 2s ease-in-out infinite;
+          }
+
+          @keyframes pulse {
+            0%, 100% {
+              transform: scale(1);
+              box-shadow: 0 8px 24px rgba(76, 175, 80, 0.3);
+            }
+            50% {
+              transform: scale(1.05);
+              box-shadow: 0 12px 32px rgba(76, 175, 80, 0.4);
+            }
+          }
           }
 
           @media (max-width: 768px) {
