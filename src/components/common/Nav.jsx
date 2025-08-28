@@ -71,6 +71,7 @@ const NavLink = styled(Link)(({ theme, active }) => ({
   borderRadius: theme.spacing(1),
   position: "relative",
   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+  WebkitTapHighlightColor: "transparent",
   "&::before": {
     content: '""',
     position: "absolute",
@@ -107,6 +108,7 @@ const IconLink = styled(Link)(({ theme }) => ({
   borderRadius: "50%",
   transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
   position: "relative",
+  WebkitTapHighlightColor: "transparent",
 
   "&:hover": {
     color: "#f4ce14",
@@ -120,6 +122,7 @@ const AnimatedMenuIcon = styled(IconButton)(({ open }) => ({
   color: "white",
   transition: "all 0.3s ease",
   transform: open ? "rotate(180deg)" : "rotate(0deg)",
+  WebkitTapHighlightColor: "transparent",
   "&:hover": {
     background: "rgba(244, 206, 20, 0.1)",
     transform: open ? "rotate(180deg) scale(1.1)" : "rotate(0deg) scale(1.1)",
@@ -160,6 +163,7 @@ const StyledListItem = styled(ListItem)(({ theme, active }) => ({
     ? "1px solid rgba(244, 206, 20, 0.3)"
     : "1px solid transparent",
   transition: "all 0.3s ease",
+  WebkitTapHighlightColor: "transparent",
 
   "&:hover": {
     background: "rgba(244, 206, 20, 0.15)",
