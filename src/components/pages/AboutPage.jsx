@@ -164,6 +164,15 @@ const StatNumber = styled(Typography)(({ theme }) => ({
   color: "#f4ce14",
   lineHeight: 1,
   textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
+  [theme.breakpoints.down("md")]: {
+    fontSize: "2.5rem",
+  },
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "2rem",
+  },
+  [theme.breakpoints.down("xs")]: {
+    fontSize: "1.8rem",
+  },
 }));
 
 const TeamMemberCard = styled(Card)(({ theme }) => ({
@@ -451,7 +460,19 @@ function AboutPage() {
       <Zoom in={animateStats} style={{ transitionDelay: `${index * 200}ms` }}>
         <StatCard>
           <StatNumber variant="h3">{displayNumber}</StatNumber>
-          <Typography variant="h6" sx={{ mt: 1, fontWeight: 500 }}>
+          <Typography
+            variant="h6"
+            sx={{
+              mt: 1,
+              fontWeight: 500,
+              fontSize: {
+                xs: "0.9rem", // Mobile: 14.4px
+                sm: "1rem", // Small: 16px
+                md: "1.1rem", // Medium: 17.6px
+                lg: "1.25rem", // Large: 20px (default h6)
+              },
+            }}
+          >
             {stat.label}
           </Typography>
         </StatCard>
@@ -483,6 +504,12 @@ function AboutPage() {
                 fontWeight: 700,
                 color: "#495e57",
                 mb: 2,
+                fontSize: {
+                  xs: "2rem", // Mobile: 32px
+                  sm: "2.25rem", // Small: 36px
+                  md: "2.5rem", // Medium: 40px
+                  lg: "3rem", // Large: 48px (default h3)
+                },
                 animation: `${fadeInUp} 0.8s ease-out`,
               }}
             >
@@ -494,6 +521,12 @@ function AboutPage() {
                 color: "#666",
                 maxWidth: "600px",
                 mx: "auto",
+                fontSize: {
+                  xs: "1rem", // Mobile: 16px
+                  sm: "1.1rem", // Small: 17.6px
+                  md: "1.2rem", // Medium: 19.2px
+                  lg: "1.25rem", // Large: 20px (default h6)
+                },
                 animation: `${fadeInUp} 0.8s ease-out 0.2s both`,
               }}
             >
@@ -518,7 +551,17 @@ function AboutPage() {
                       </IconWrapper>
                       <Typography
                         variant="h5"
-                        sx={{ fontWeight: 600, mb: 2, color: "#495e57" }}
+                        sx={{
+                          fontWeight: 600,
+                          mb: 2,
+                          color: "#495e57",
+                          fontSize: {
+                            xs: "1.25rem", // Mobile: 20px
+                            sm: "1.35rem", // Small: 21.6px
+                            md: "1.45rem", // Medium: 23.2px
+                            lg: "1.5rem", // Large: 24px (default h5)
+                          },
+                        }}
                       >
                         {value.title}
                       </Typography>
@@ -550,6 +593,12 @@ function AboutPage() {
                 fontWeight: 700,
                 color: "#495e57",
                 mb: 2,
+                fontSize: {
+                  xs: "2rem", // Mobile: 32px
+                  sm: "2.25rem", // Small: 36px
+                  md: "2.5rem", // Medium: 40px
+                  lg: "3rem", // Large: 48px (default h3)
+                },
               }}
             >
               Our Journey in Numbers
@@ -592,6 +641,12 @@ function AboutPage() {
                 fontWeight: 700,
                 color: "#495e57",
                 mb: 2,
+                fontSize: {
+                  xs: "2rem", // Mobile: 32px
+                  sm: "2.25rem", // Small: 36px
+                  md: "2.5rem", // Medium: 40px
+                  lg: "3rem", // Large: 48px (default h3)
+                },
               }}
             >
               Meet Our Team
@@ -602,6 +657,12 @@ function AboutPage() {
                 color: "#666",
                 maxWidth: "600px",
                 mx: "auto",
+                fontSize: {
+                  xs: "1rem", // Mobile: 16px
+                  sm: "1.1rem", // Small: 17.6px
+                  md: "1.2rem", // Medium: 19.2px
+                  lg: "1.25rem", // Large: 20px (default h6)
+                },
               }}
             >
               The passionate people behind Little Lemon's success
@@ -632,7 +693,17 @@ function AboutPage() {
                       />
                       <Typography
                         variant="h5"
-                        sx={{ fontWeight: 600, mb: 1, color: "#495e57" }}
+                        sx={{
+                          fontWeight: 600,
+                          mb: 1,
+                          color: "#495e57",
+                          fontSize: {
+                            xs: "1.25rem", // Mobile: 20px
+                            sm: "1.35rem", // Small: 21.6px
+                            md: "1.45rem", // Medium: 23.2px
+                            lg: "1.5rem", // Large: 24px (default h5)
+                          },
+                        }}
                       >
                         {member.name}
                       </Typography>
@@ -976,16 +1047,6 @@ function AboutPage() {
           100% {
             opacity: 1;
             transform: translateY(0);
-          }
-        }
-
-        @media (max-width: 768px) {
-          .hero-title {
-            font-size: 2.5rem;
-          }
-
-          .hero-subtitle {
-            font-size: 1.1rem;
           }
         }
 
