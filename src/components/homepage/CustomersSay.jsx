@@ -2,7 +2,8 @@ function CustomersSay() {
   const testimonials = [
     {
       name: "Sarah L.",
-      feedback: "The food was absolutely amazing and the atmosphere was perfect!",
+      feedback:
+        "The food was absolutely amazing and the atmosphere was perfect!",
       image: "https://i.pravatar.cc/100?img=32",
     },
     {
@@ -12,7 +13,8 @@ function CustomersSay() {
     },
     {
       name: "Emily R.",
-      feedback: "Service was top-notch and the dishes were bursting with flavor!",
+      feedback:
+        "Service was top-notch and the dishes were bursting with flavor!",
       image: "https://i.pravatar.cc/100?img=12",
     },
     {
