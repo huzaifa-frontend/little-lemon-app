@@ -1,23 +1,23 @@
-import '../../App.css';
-import lemonChicken from '../../assets/lemon-chicken.jpg';
-import mediterraneanSalad from '../../assets/mediterranean-salad.jpg';
-import baklava from '../../assets/baklava.jpg';
+import "../../App.css";
+import lemonChicken from "../../assets/lemon-chicken.jpg";
+import mediterraneanSalad from "../../assets/mediterranean-salad.jpg";
+import baklava from "../../assets/baklava.jpg";
 
 function Specials() {
   const specials = [
     {
-      name: 'Grilled Lemon Chicken',
-      description: 'Tender chicken grilled with lemon and herbs.',
+      name: "Grilled Lemon Chicken",
+      description: "Tender chicken grilled with lemon and herbs.",
       image: lemonChicken,
     },
     {
-      name: 'Mediterranean Salad',
-      description: 'A fresh mix of cucumbers, tomatoes, and olives.',
+      name: "Mediterranean Salad",
+      description: "A fresh mix of cucumbers, tomatoes, and olives.",
       image: mediterraneanSalad,
     },
     {
-      name: 'Baklava Dessert',
-      description: 'Flaky layers of pastry with honey and nuts.',
+      name: "Baklava Dessert",
+      description: "Flaky layers of pastry with honey and nuts.",
       image: baklava,
     },
   ];

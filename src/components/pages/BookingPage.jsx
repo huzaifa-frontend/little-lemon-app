@@ -19,7 +19,11 @@ const initializeTimes = () => {
 };
 
 function BookingPage({ submitForm }) {
-  const [availableTimes, dispatch] = useReducer(updateTimes, [], initializeTimes);
+  const [availableTimes, dispatch] = useReducer(
+    updateTimes,
+    [],
+    initializeTimes
+  );
 
   return (
     <main className="booking-page">

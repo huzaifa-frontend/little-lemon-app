@@ -14,7 +14,7 @@
 ![MIT License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 ![Project Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
 
-🌐 **Live Demo:** [Click here to visitsite](https://huzaifa-frontend.github.io/little-lemon-app/)
+🌐 **Live Demo:** [Click here to visitsite](https://little-lemon-app-indol.vercel.app/)
 
 ## **Deployed on Vercel**
 
