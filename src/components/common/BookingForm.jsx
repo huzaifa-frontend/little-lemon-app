@@ -46,7 +46,11 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"], dispatch, submitForm }) {
+function BookingForm({
+  availableTimes = ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"],
+  dispatch,
+  submitForm,
+}) {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [formStep, setFormStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -64,10 +68,16 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
-        .matches(/^[A-Za-z\s'-]+$/, "Only letters, spaces, apostrophes, and hyphens allowed")
+        .matches(
+          /^[A-Za-z\s'-]+$/,
+          "Only letters, spaces, apostrophes, and hyphens allowed"
+        )
         .required("First name is required"),
       lastName: Yup.string()
-        .matches(/^[A-Za-z\s'-]+$/, "Only letters, spaces, apostrophes, and hyphens allowed")
+        .matches(
+          /^[A-Za-z\s'-]+$/,
+          "Only letters, spaces, apostrophes, and hyphens allowed"
+        )
         .required("Last name is required"),
       email: Yup.string().email("Invalid email").required("Email is required"),
       contact: Yup.string()
@@ -93,7 +103,7 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
     onSubmit: async (values, { resetForm }) => {
       setIsSubmitting(true);
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise((resolve) => setTimeout(resolve, 1500));
 
       if (submitForm) {
         submitForm({
@@ -117,9 +127,20 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
   };
 
   const getProgressValue = React.useMemo(() => {
-    const filledFields = Object.values(formik.values).filter(value => value !== "" && value !== null).length;
+    const filledFields = Object.values(formik.values).filter(
+      (value) => value !== "" && value !== null
+    ).length;
     return (filledFields / Object.keys(formik.values).length) * 100;
-  }, [formik.values.firstName, formik.values.lastName, formik.values.email, formik.values.contact, formik.values.date, formik.values.time, formik.values.guests, formik.values.occasion]);
+  }, [
+    formik.values.firstName,
+    formik.values.lastName,
+    formik.values.email,
+    formik.values.contact,
+    formik.values.date,
+    formik.values.time,
+    formik.values.guests,
+    formik.values.occasion,
+  ]);
 
   const occasionColors = {
     Birthday: "#f4ce14",
@@ -146,10 +167,11 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                   height: { xs: 75, sm: 85, md: 100 },
                   mx: "auto",
                   mb: { xs: 2, md: 3 },
-                  background: "linear-gradient(135deg, #495e57 0%, #3a4a45 100%)",
+                  background:
+                    "linear-gradient(135deg, #495e57 0%, #3a4a45 100%)",
                   boxShadow: {
                     xs: "0 4px 16px rgba(73, 94, 87, 0.2)",
-                    md: "0 8px 24px rgba(73, 94, 87, 0.3)"
+                    md: "0 8px 24px rgba(73, 94, 87, 0.3)",
                   },
                 }}
               >
@@ -168,7 +190,7 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                 WebkitTextFillColor: "transparent",
                 mb: { xs: 1.5, md: 2 },
                 fontSize: { xs: "1.8rem", sm: "2.2rem", md: "3.75rem" },
-                lineHeight: { xs: 1.2, md: 1.1 }
+                lineHeight: { xs: 1.2, md: 1.1 },
               }}
             >
               Reserve Your Table
@@ -184,22 +206,38 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                 mx: "auto",
                 lineHeight: { xs: 1.3, md: 1.4 },
                 fontSize: { xs: "0.99rem", sm: "1.1rem", md: "1.5rem" },
-                px: { xs: 2, sm: 1, md: 0 }
+                px: { xs: 2, sm: 1, md: 0 },
               }}
             >
-              Embark on a culinary journey at Little Lemon - where every meal is a celebration of authentic flavors and unforgettable moments
+              Embark on a culinary journey at Little Lemon - where every meal is
+              a celebration of authentic flavors and unforgettable moments
             </Typography>
 
-            <Box display="flex" justifyContent="center" alignItems="center" gap={1} mb={2}>
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              gap={1}
+              mb={2}
+            >
               {[1, 2, 3, 4, 5].map((star) => (
-                <Star key={star} sx={{ color: "#FFD700", fontSize: { xs: 20, sm: 24, md: 28 } }} />
+                <Star
+                  key={star}
+                  sx={{
+                    color: "#FFD700",
+                    fontSize: { xs: 20, sm: 24, md: 28 },
+                  }}
+                />
               ))}
-              <Typography variant="body1" sx={{
-                ml: { xs: 0.5, md: 1 },
-                fontWeight: 600,
-                color: "text.secondary",
-                fontSize: { xs: "0.8rem", sm: "0.9rem", md: "1rem" }
-              }}>
+              <Typography
+                variant="body1"
+                sx={{
+                  ml: { xs: 0.5, md: 1 },
+                  fontWeight: 600,
+                  color: "text.secondary",
+                  fontSize: { xs: "0.8rem", sm: "0.9rem", md: "1rem" },
+                }}
+              >
                 5.0 (2,847 reviews)
               </Typography>
             </Box>
@@ -229,12 +267,14 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
 
         {/* Progress Bar */}
         <Slide direction="down" in={true} timeout={800}>
-          <Card sx={{
-            mb: 4,
-            background: "linear-gradient(135deg, #495e57 0%, #3a4a45 100%)",
-            borderRadius: 3,
-            boxShadow: "0 4px 12px rgba(73, 94, 87, 0.2)",
-          }}>
+          <Card
+            sx={{
+              mb: 4,
+              background: "linear-gradient(135deg, #495e57 0%, #3a4a45 100%)",
+              borderRadius: 3,
+              boxShadow: "0 4px 12px rgba(73, 94, 87, 0.2)",
+            }}
+          >
             <CardContent sx={{ py: { xs: 2, md: 3 } }}>
               <Box display="flex" alignItems="center" gap={2}>
                 <Typography
@@ -292,7 +332,8 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                 left: 0,
                 right: 0,
                 height: 6,
-                background: "linear-gradient(90deg, #f4ce14 0%, #495e57 50%, #f4ce14 100%)",
+                background:
+                  "linear-gradient(90deg, #f4ce14 0%, #495e57 50%, #f4ce14 100%)",
               },
             }}
           >
@@ -308,32 +349,47 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                       gap={{ xs: 1, md: 2 }}
                       mb={2}
                     >
-                      <Person sx={{ fontSize: { xs: 24, sm: 28, md: 32 }, color: "#495e57" }} />
+                      <Person
+                        sx={{
+                          fontSize: { xs: 24, sm: 28, md: 32 },
+                          color: "#495e57",
+                        }}
+                      />
                       <Typography
                         variant="h4"
                         fontWeight={700}
                         sx={{
                           color: "#495e57",
                           position: "relative",
-                          fontSize: { xs: "1.25rem", sm: "1.5rem", md: "2.125rem" },
-                          whiteSpace: "nowrap"
+                          fontSize: {
+                            xs: "1.25rem",
+                            sm: "1.5rem",
+                            md: "2.125rem",
+                          },
+                          whiteSpace: "nowrap",
                         }}
                       >
                         Personal Information
                       </Typography>
                     </Box>
-                    <Divider sx={{
-                      maxWidth: { xs: 150, md: 200 },
-                      mx: "auto",
-                      borderWidth: { xs: 1, md: 2 },
-                      borderColor: "#f4ce14"
-                    }} />
+                    <Divider
+                      sx={{
+                        maxWidth: { xs: 150, md: 200 },
+                        mx: "auto",
+                        borderWidth: { xs: 1, md: 2 },
+                        borderColor: "#f4ce14",
+                      }}
+                    />
                   </Box>
                 </Fade>
 
                 <Grid container spacing={3} justifyContent="center">
                   <Grid item xs={12} md={6}>
-                    <Zoom in={true} timeout={800} style={{ transitionDelay: "100ms" }}>
+                    <Zoom
+                      in={true}
+                      timeout={800}
+                      style={{ transitionDelay: "100ms" }}
+                    >
                       <TextField
                         id="firstName"
                         name="firstName"
@@ -341,8 +397,13 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                         value={formik.values.firstName}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
-                        helperText={formik.touched.firstName && formik.errors.firstName}
+                        error={
+                          formik.touched.firstName &&
+                          Boolean(formik.errors.firstName)
+                        }
+                        helperText={
+                          formik.touched.firstName && formik.errors.firstName
+                        }
                         required
                         fullWidth
                         InputProps={{
@@ -365,7 +426,11 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                   </Grid>
 
                   <Grid item xs={12} md={6}>
-                    <Zoom in={true} timeout={800} style={{ transitionDelay: "200ms" }}>
+                    <Zoom
+                      in={true}
+                      timeout={800}
+                      style={{ transitionDelay: "200ms" }}
+                    >
                       <TextField
                         id="lastName"
                         name="lastName"
@@ -373,8 +438,13 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                         value={formik.values.lastName}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        error={formik.touched.lastName && Boolean(formik.errors.lastName)}
-                        helperText={formik.touched.lastName && formik.errors.lastName}
+                        error={
+                          formik.touched.lastName &&
+                          Boolean(formik.errors.lastName)
+                        }
+                        helperText={
+                          formik.touched.lastName && formik.errors.lastName
+                        }
                         required
                         fullWidth
                         InputProps={{
@@ -397,7 +467,11 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                   </Grid>
 
                   <Grid item xs={12} md={6}>
-                    <Zoom in={true} timeout={800} style={{ transitionDelay: "300ms" }}>
+                    <Zoom
+                      in={true}
+                      timeout={800}
+                      style={{ transitionDelay: "300ms" }}
+                    >
                       <TextField
                         id="email"
                         name="email"
@@ -406,7 +480,9 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                         value={formik.values.email}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        error={formik.touched.email && Boolean(formik.errors.email)}
+                        error={
+                          formik.touched.email && Boolean(formik.errors.email)
+                        }
                         helperText={formik.touched.email && formik.errors.email}
                         required
                         fullWidth
@@ -430,7 +506,11 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                   </Grid>
 
                   <Grid item xs={12} md={6}>
-                    <Zoom in={true} timeout={800} style={{ transitionDelay: "400ms" }}>
+                    <Zoom
+                      in={true}
+                      timeout={800}
+                      style={{ transitionDelay: "400ms" }}
+                    >
                       <TextField
                         id="contact"
                         name="contact"
@@ -439,8 +519,13 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                         value={formik.values.contact}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        error={formik.touched.contact && Boolean(formik.errors.contact)}
-                        helperText={formik.touched.contact && formik.errors.contact}
+                        error={
+                          formik.touched.contact &&
+                          Boolean(formik.errors.contact)
+                        }
+                        helperText={
+                          formik.touched.contact && formik.errors.contact
+                        }
                         required
                         fullWidth
                         InputProps={{
@@ -475,31 +560,46 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                       gap={{ xs: 1, md: 2 }}
                       mb={2}
                     >
-                      <Restaurant sx={{ fontSize: { xs: 24, sm: 28, md: 32 }, color: "#495e57" }} />
+                      <Restaurant
+                        sx={{
+                          fontSize: { xs: 24, sm: 28, md: 32 },
+                          color: "#495e57",
+                        }}
+                      />
                       <Typography
                         variant="h4"
                         fontWeight={700}
                         sx={{
                           color: "#495e57",
-                          fontSize: { xs: "1.25rem", sm: "1.5rem", md: "2.125rem" },
-                          whiteSpace: "nowrap"
+                          fontSize: {
+                            xs: "1.25rem",
+                            sm: "1.5rem",
+                            md: "2.125rem",
+                          },
+                          whiteSpace: "nowrap",
                         }}
                       >
                         Reservation Details
                       </Typography>
                     </Box>
-                    <Divider sx={{
-                      maxWidth: { xs: 150, md: 200 },
-                      mx: "auto",
-                      borderWidth: { xs: 1, md: 2 },
-                      borderColor: "#f4ce14"
-                    }} />
+                    <Divider
+                      sx={{
+                        maxWidth: { xs: 150, md: 200 },
+                        mx: "auto",
+                        borderWidth: { xs: 1, md: 2 },
+                        borderColor: "#f4ce14",
+                      }}
+                    />
                   </Box>
                 </Slide>
 
                 <Grid container spacing={3} justifyContent="center">
                   <Grid item xs={12} md={6}>
-                    <Zoom in={true} timeout={800} style={{ transitionDelay: "500ms" }}>
+                    <Zoom
+                      in={true}
+                      timeout={800}
+                      style={{ transitionDelay: "500ms" }}
+                    >
                       <TextField
                         id="date"
                         name="date"
@@ -509,7 +609,9 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                         onChange={handleDateChange}
                         onBlur={formik.handleBlur}
                         InputLabelProps={{ shrink: true }}
-                        error={formik.touched.date && Boolean(formik.errors.date)}
+                        error={
+                          formik.touched.date && Boolean(formik.errors.date)
+                        }
                         helperText={formik.touched.date && formik.errors.date}
                         required
                         fullWidth
@@ -533,10 +635,16 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                   </Grid>
 
                   <Grid item xs={12} md={6}>
-                    <Zoom in={true} timeout={800} style={{ transitionDelay: "600ms" }}>
+                    <Zoom
+                      in={true}
+                      timeout={800}
+                      style={{ transitionDelay: "600ms" }}
+                    >
                       <FormControl
                         fullWidth
-                        error={formik.touched.time && Boolean(formik.errors.time)}
+                        error={
+                          formik.touched.time && Boolean(formik.errors.time)
+                        }
                         required
                         sx={{
                           "& .MuiOutlinedInput-root": {
@@ -579,7 +687,11 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                   </Grid>
 
                   <Grid item xs={12} md={6}>
-                    <Zoom in={true} timeout={800} style={{ transitionDelay: "700ms" }}>
+                    <Zoom
+                      in={true}
+                      timeout={800}
+                      style={{ transitionDelay: "700ms" }}
+                    >
                       <TextField
                         id="guests"
                         name="guests"
@@ -589,8 +701,12 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         inputProps={{ min: 1, max: 10 }}
-                        error={formik.touched.guests && Boolean(formik.errors.guests)}
-                        helperText={formik.touched.guests && formik.errors.guests}
+                        error={
+                          formik.touched.guests && Boolean(formik.errors.guests)
+                        }
+                        helperText={
+                          formik.touched.guests && formik.errors.guests
+                        }
                         required
                         fullWidth
                         InputProps={{
@@ -617,10 +733,17 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                   </Grid>
 
                   <Grid item xs={12} md={6}>
-                    <Zoom in={true} timeout={800} style={{ transitionDelay: "800ms" }}>
+                    <Zoom
+                      in={true}
+                      timeout={800}
+                      style={{ transitionDelay: "800ms" }}
+                    >
                       <FormControl
                         fullWidth
-                        error={formik.touched.occasion && Boolean(formik.errors.occasion)}
+                        error={
+                          formik.touched.occasion &&
+                          Boolean(formik.errors.occasion)
+                        }
                         required
                         sx={{
                           "& .MuiOutlinedInput-root": {
@@ -650,26 +773,30 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                             </InputAdornment>
                           }
                         >
-                          {["Birthday", "Anniversary", "Casual"].map((occasion) => (
-                            <MenuItem key={occasion} value={occasion}>
-                              <Box display="flex" alignItems="center" gap={1}>
-                                <Chip
-                                  size="small"
-                                  sx={{
-                                    backgroundColor: occasionColors[occasion],
-                                    color: "white",
-                                    minWidth: 8,
-                                    height: 8,
-                                    "& .MuiChip-label": { display: "none" },
-                                  }}
-                                />
-                                {occasion}
-                              </Box>
-                            </MenuItem>
-                          ))}
+                          {["Birthday", "Anniversary", "Casual"].map(
+                            (occasion) => (
+                              <MenuItem key={occasion} value={occasion}>
+                                <Box display="flex" alignItems="center" gap={1}>
+                                  <Chip
+                                    size="small"
+                                    sx={{
+                                      backgroundColor: occasionColors[occasion],
+                                      color: "white",
+                                      minWidth: 8,
+                                      height: 8,
+                                      "& .MuiChip-label": { display: "none" },
+                                    }}
+                                  />
+                                  {occasion}
+                                </Box>
+                              </MenuItem>
+                            )
+                          )}
                         </Select>
                         {formik.touched.occasion && formik.errors.occasion && (
-                          <FormHelperText>{formik.errors.occasion}</FormHelperText>
+                          <FormHelperText>
+                            {formik.errors.occasion}
+                          </FormHelperText>
                         )}
                       </FormControl>
                     </Zoom>
@@ -679,7 +806,11 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
 
               {/* Submit Button */}
               <Box textAlign="center">
-                <Zoom in={true} timeout={1000} style={{ transitionDelay: "900ms" }}>
+                <Zoom
+                  in={true}
+                  timeout={1000}
+                  style={{ transitionDelay: "900ms" }}
+                >
                   <Button
                     type="submit"
                     variant="contained"
@@ -690,9 +821,7 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
                       py: { xs: 1, md: 2 },
                       px: { xs: 3, md: 4 },
                       borderRadius: 2,
-                      background: isSubmitting
-                        ? "#999"
-                        : "#495e57",
+                      background: isSubmitting ? "#999" : "#495e57",
                       fontWeight: 600,
                       fontSize: { xs: "0.9rem", md: "1.1rem" },
                       textTransform: "none",
@@ -747,8 +876,7 @@ function BookingForm({ availableTimes = ["17:00", "18:00", "19:00", "20:00", "21
           onClose={() => setOpenSnackbar(false)}
           anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
           TransitionComponent={Slide}
-        >
-        </Snackbar>
+        ></Snackbar>
       </Container>
     </Box>
   );
