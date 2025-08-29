@@ -47,10 +47,10 @@ This project demonstrates **production-ready standards**, including responsivene
 
 - 🏠 **Homepage** — Hero section, restaurant highlights, call-to-action buttons  
 - 📋 **Menu Page** — Dynamic food listings, responsive grid layout  
-- 🛒 **Cart Page** — Add/remove dishes, update quantities, checkout simulation  
-- 📅 **Booking Page** — Table reservations with Formik + Yup validation  
+- 📅 **About Page** — Restaurant story, team, and values  
 - 📞 **Contact Page** — Contact form with validation and real-time feedback  
-- 🙍 **Profile Page** — User details, order history (mock data)  
+- 🛒 **Cart Page** — Add/remove dishes, update quantities, checkout simulation  
+- 👤 **Profile Page** — User details, order history (mock data)  
 
 ### 🎨 UI/UX Highlights
 
@@ -131,24 +131,28 @@ npm run build
 ## 📸 Screenshots
 
 - 🏠 **Homepage**  
-![Homepage](public/assets/screenshots/homepage.png)
+![Homepage](public/assets/screenshots/home.png)
 
 - 📋 **Menu Page**  
 ![Menu Page](public/assets/screenshots/menu.png)
 
-- 📅 **Booking Page**  
-![Booking Page](public/assets/screenshots/booking.png)
+- 📅 **About Page**  
+![About Page](public/assets/screenshots/about.png)
 
 - 📞 **Contact Page**  
 ![Contact Page](public/assets/screenshots/contact.png)
 
+- 🛒 **Cart Page**  
+![Cart Page](public/assets/screenshots/cart.png)
+
+- 👤 **Profile Page**  
+![Profile Page](public/assets/screenshots/profile.png)
+
 ---
 
-## 🎥 Demo GIF
+## 🎥 Preview
 
-![Demo GIF](assets/gif/demo.gif)
-
-*(This GIF showcases the app flow, interactions, and animations.)*
+![Demo GIF](assets/gif/preview.gif)
 
 ---
 
