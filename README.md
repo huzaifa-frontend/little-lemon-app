@@ -162,7 +162,7 @@ npm run build
 
 ## 🎥 Preview
 
-![Demo GIF](assets/gif/preview.gif)
+![Preview GIF](public/assets/gif/preview.gif)
 
 ---
 
