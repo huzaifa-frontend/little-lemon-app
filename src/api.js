@@ -1,5 +1,5 @@
 const seededRandom = function (seed) {
-    var m = 2**35 - 31;
+    var m = 2 ** 35 - 31;
     var a = 185852;
     var s = seed % m;
     return function () {
@@ -7,21 +7,21 @@ const seededRandom = function (seed) {
     };
 }
 
-const fetchAPI = function(date) {
+const fetchAPI = function (date) {
     let result = [];
     let random = seededRandom(date.getDate());
 
-    for(let i = 17; i <= 23; i++) {
-        if(random() < 0.5) {
+    for (let i = 17; i <= 23; i++) {
+        if (random() < 0.5) {
             result.push(i + ':00');
         }
-        if(random() < 0.5) {
+        if (random() < 0.5) {
             result.push(i + ':30');
         }
     }
     return result;
 };
-const submitAPI = function(formData) {
+const submitAPI = function (formData) {
     return true;
 };
 
