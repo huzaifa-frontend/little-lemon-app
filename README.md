@@ -130,22 +130,22 @@ npm run build
 
 ## 📸 Screenshots
 
-- 🏠 **Homepage**  
+### 🏠 **Homepage**  
 ![Homepage](public/assets/screenshots/home.png)
 
-- 📋 **Menu Page**  
+### 📋 **Menu Page**  
 ![Menu Page](public/assets/screenshots/menu.png)
 
-- 📅 **About Page**  
+### 📅 **About Page**  
 ![About Page](public/assets/screenshots/about.png)
 
-- 📞 **Contact Page**  
+### 📞 **Contact Page**  
 ![Contact Page](public/assets/screenshots/contact.png)
 
-- 🛒 **Cart Page**  
+### 🛒 **Cart Page**  
 ![Cart Page](public/assets/screenshots/cart.png)
 
-- 👤 **Profile Page**  
+### 👤 **Profile Page**  
 ![Profile Page](public/assets/screenshots/profile.png)
 
 ---
