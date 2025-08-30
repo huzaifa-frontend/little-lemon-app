@@ -106,7 +106,7 @@ report.html
 # TypeScript
 *.tsbuildinfo
 
-# Optional: Remove if you want to track package-lock.json
+# Optional
 package-lock.json
 
 # Local development files
